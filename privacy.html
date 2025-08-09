@@ -4,48 +4,256 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Politique de confidentialité — RayBot</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <style> body{padding:32px; max-width:920px; margin:0 auto; font-family: Poppins, Arial, sans-serif;} h1,h2{font-weight:800;} .muted{color:#6c757d;} </style>
+
+  <!-- SEO / Open Graph -->
+  <meta name="description" content="Politique de confidentialité de RayBot : données collectées, finalités, base légale, conservation, sécurité, droits RGPD, contact support." />
+  <meta property="og:title" content="Politique de confidentialité — RayBot" />
+  <meta property="og:description" content="Découvrez comment RayBot traite vos données et vos droits (RGPD)." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="https://cdn.discordapp.com/avatars/1401275433164472421/fc4bb079b3a4e560281ad9c8d6275345.png?size=128" />
+
+  <!-- Styles: utilisent les fichiers à la racine de ton repo -->
+  <link rel="stylesheet" href="bootstrap.min.css" />
+  <link rel="stylesheet" href="main.css" />
+
+  <style>
+    :root {
+      --txt: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --accent: #4f46e5;
+      --bg: #f8fafc;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --txt:#e5e7eb; --muted:#9ca3af; --card:#0b1220; --border:#1f2a44; --accent:#818cf8; --bg:#060b18;
+      }
+    }
+    body{ background:var(--bg); color:var(--txt); font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; }
+    .container-narrow{ max-width: 920px; }
+    .page{ padding: 32px 20px 48px; }
+    .card{ background:var(--card); border:1px solid var(--border); border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,.04); }
+    .card .card-body{ padding: 24px; }
+    h1{ font-weight:800; letter-spacing:-.02em; }
+    h2{ font-weight:800; font-size:1.25rem; margin-top:1.75rem; }
+    p, li{ line-height: 1.7; }
+    .muted{ color: var(--muted); }
+    .toc a{ text-decoration:none; }
+    .badge-soft{ background: rgba(79,70,229,.1); color:#4f46e5; border-radius:999px; padding:.25rem .6rem; font-size:.75rem; font-weight:700; }
+    .table{ border-color: var(--border); }
+    .table th, .table td{ vertical-align: top; }
+    .top-links{ display:flex; gap:10px; flex-wrap:wrap; }
+    .top-links a{ text-decoration: none; }
+    .footer-links{ margin-top: 12px; font-size:.95rem; }
+    .backtop{ position:fixed; right:16px; bottom:16px; border-radius:999px; padding:.6rem .9rem; }
+    code{ background: rgba(0,0,0,.06); padding:.1rem .35rem; border-radius:6px; font-size: .9em; }
+  </style>
 </head>
 <body>
-  <h1>Politique de confidentialité</h1>
-  <p class="muted">Dernière mise à jour : <span id="d"></span></p>
+  <main class="page">
+    <div class="container container-narrow">
 
-  <h2>1. Données collectées</h2>
-  <p>RayBot peut traiter certaines données nécessaires à son fonctionnement :</p>
-  <ul>
-    <li>Identifiants Discord (serveur, canal, utilisateur, message) pour exécuter des commandes et fonctionnalités (économie, jeux, invites, personnalisation).</li>
-    <li>Configurations par serveur (préfixes, paramètres, réponses personnalisées, cooldowns).</li>
-    <li>Logs techniques non sensibles (erreurs, performances) pour le diagnostic.</li>
-  </ul>
+      <header class="mb-4">
+        <div class="d-flex align-items-center gap-3 mb-2">
+          <img src="https://cdn.discordapp.com/avatars/1401275433164472421/fc4bb079b3a4e560281ad9c8d6275345.png?size=128" width="42" height="42" style="border-radius:10px" alt="RayBot">
+          <span class="badge-soft">RayBot</span>
+        </div>
+        <h1 class="mb-2">Politique de confidentialité</h1>
+        <p class="muted">Dernière mise à jour : <span id="lastUpdate"></span></p>
+        <div class="top-links">
+          <a class="btn btn-outline-secondary btn-sm" href="index.html">← Retour à l’accueil</a>
+          <a class="btn btn-outline-primary btn-sm" href="terms.html">Voir les Conditions d’utilisation</a>
+        </div>
+      </header>
 
-  <h2>2. Finalités</h2>
-  <p>Les données sont utilisées pour fournir les fonctionnalités du Bot, assurer la modération automatisée, prévenir les abus, améliorer la stabilité et répondre au support.</p>
+      <!-- Sommaire -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h2 class="mb-3">Sommaire</h2>
+          <ol class="toc">
+            <li><a href="#scope">Objet & champ d’application</a></li>
+            <li><a href="#controller">Responsable de traitement & contact</a></li>
+            <li><a href="#data">Catégories de données traitées</a></li>
+            <li><a href="#purposes">Finalités & bases légales</a></li>
+            <li><a href="#retention">Durées de conservation</a></li>
+            <li><a href="#sharing">Partage & sous-traitants</a></li>
+            <li><a href="#transfers">Transferts internationaux</a></li>
+            <li><a href="#security">Sécurité</a></li>
+            <li><a href="#rights">Vos droits (RGPD)</a></li>
+            <li><a href="#children">Utilisateurs mineurs</a></li>
+            <li><a href="#cookies">Cookies & trackers</a></li>
+            <li><a href="#changes">Mises à jour de la politique</a></li>
+          </ol>
+        </div>
+      </div>
 
-  <h2>3. Base légale</h2>
-  <p>Intérêt légitime à fournir et améliorer un service de bot Discord, et respect des obligations des <a href="https://discord.com/terms" target="_blank" rel="noopener">conditions de Discord</a>.</p>
+      <!-- 1. Scope -->
+      <section id="scope" class="card mb-4">
+        <div class="card-body">
+          <h2>1) Objet & champ d’application</h2>
+          <p>Cette politique décrit comment <strong>RayBot</strong> (le « Bot ») traite les données personnelles lorsque vous l’ajoutez à un serveur ou utilisez ses fonctionnalités sur Discord. Elle s’applique aux données traitées via l’API Discord et aux données de configuration sauvegardées pour le fonctionnement du Bot.</p>
+        </div>
+      </section>
 
-  <h2>4. Conservation</h2>
-  <p>Les données sont conservées uniquement le temps nécessaire : les statistiques et réglages persistent tant que le serveur utilise le Bot ; les logs techniques sont purgés périodiquement.</p>
+      <!-- 2. Controller -->
+      <section id="controller" class="card mb-4">
+        <div class="card-body">
+          <h2>2) Responsable de traitement & contact</h2>
+          <p>Le responsable de traitement est l’éditeur de RayBot (« nous »). Pour toute question, demande d’accès ou de suppression de données, contactez-nous via le <a href="https://discord.gg/DM2bEGXCMm" target="_blank" rel="noopener">Serveur support</a>. Si tu préfères l’e-mail, ajoute-le ici : <code>contact@ton-domaine.tld</code> (facultatif).</p>
+        </div>
+      </section>
 
-  <h2>5. Partage</h2>
-  <p>Nous ne vendons pas vos données. Elles peuvent être hébergées chez des prestataires techniques (hébergeur, base de données) sous contrat et protégées.</p>
+      <!-- 3. Data -->
+      <section id="data" class="card mb-4">
+        <div class="card-body">
+          <h2>3) Catégories de données traitées</h2>
+          <ul>
+            <li><strong>Identifiants Discord</strong> : IDs de serveurs, canaux, utilisateurs, messages — nécessaires à l’exécution des commandes (économie, jeux, invites, personnalisation).</li>
+            <li><strong>Configurations par serveur</strong> : préfixes/commandes, paramètres d’économie, réponses personnalisées, cooldowns, salons ciblés, etc.</li>
+            <li><strong>Métadonnées techniques</strong> : journaux d’erreurs, mesures de performance, compteurs d’utilisation pour diagnostic et amélioration.</li>
+            <li><strong>Données d’invites</strong> (si activé) : code d’invitation, auteur de l’invite, nombre d’utilisations, horodatages.</li>
+            <li><strong>Contenu de messages</strong> : uniquement si nécessaire à une commande (ex. prompts IA) et <em>jamais</em> pour de la publicité.</li>
+          </ul>
+          <p class="muted mb-0">Nous ne collectons pas d’informations « sensibles » au sens du RGPD (santé, opinions politiques, etc.).</p>
+        </div>
+      </section>
 
-  <h2>6. Sécurité</h2>
-  <p>Accès restreint, contrôle des permissions, chiffrement en transit (HTTPS) lorsque applicable, et bonnes pratiques de sécurité applicative.</p>
+      <!-- 4. Purposes & legal bases -->
+      <section id="purposes" class="card mb-4">
+        <div class="card-body">
+          <h2>4) Finalités & bases légales</h2>
+          <ul>
+            <li><strong>Fourniture du service</strong> (exécuter les commandes, enregistrer la config) — <em>intérêt légitime</em>.</li>
+            <li><strong>Sécurité & anti-abus</strong> (rate-limit, détection d’usage anormal) — <em>intérêt légitime</em>.</li>
+            <li><strong>Amélioration & support</strong> (diagnostic via logs) — <em>intérêt légitime</em>.</li>
+            <li><strong>Conformité</strong> (respect des <a href="https://discord.com/terms" target="_blank" rel="noopener">règles Discord</a> et lois) — <em>obligation légale</em> le cas échéant.</li>
+          </ul>
+        </div>
+      </section>
 
-  <h2>7. Droits des utilisateurs</h2>
-  <p>Selon votre juridiction (RGPD, etc.), vous pouvez demander l’accès, la rectification ou la suppression des données vous concernant. Contact : <a href="https://discord.gg/DM2bEGXCMm" target="_blank" rel="noopener">Serveur support</a>.</p>
+      <!-- 5. Retention -->
+      <section id="retention" class="card mb-4">
+        <div class="card-body">
+          <h2>5) Durées de conservation</h2>
+          <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+              <thead class="thead-light">
+                <tr>
+                  <th>Donnée</th><th>Durée</th><th>Critère de suppression</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Configurations serveur</td>
+                  <td>Tant que le Bot est présent</td>
+                  <td>Suppression automatique si le Bot quitte le serveur ou sur demande admin</td>
+                </tr>
+                <tr>
+                  <td>Métadonnées & logs</td>
+                  <td>30 à 90 jours</td>
+                  <td>Purges régulières et rotation des journaux</td>
+                </tr>
+                <tr>
+                  <td>Données d’invites</td>
+                  <td>Tant que la fonctionnalité est active</td>
+                  <td>Réinitialisation/clear par commande ou retrait de la fonctionnalité</td>
+                </tr>
+                <tr>
+                  <td>Contenus soumis à des commandes</td>
+                  <td>Temporaire (exécution)</td>
+                  <td>Non stocké durablement, sauf si une commande le prévoit explicitement</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
 
-  <h2>8. Enfants</h2>
-  <p>RayBot s’adresse aux utilisateurs de Discord conformément à l’âge minimal requis par Discord et les lois locales.</p>
+      <!-- 6. Sharing & processors -->
+      <section id="sharing" class="card mb-4">
+        <div class="card-body">
+          <h2>6) Partage & sous-traitants</h2>
+          <p>Nous ne vendons pas vos données. Elles peuvent transiter ou être stockées chez des prestataires techniques sous contrat (hébergement, base de données, monitoring) avec des garanties appropriées.</p>
+          <ul>
+            <li><strong>Discord Inc.</strong> — API/plateforme de messagerie (indispensable au service).</li>
+            <li><em>(Optionnel)</em> Hébergeur de ton bot/API (ex. Railway/Render/VPS).</li>
+            <li><em>(Optionnel)</em> Fournisseur IA si tu actives des commandes IA.</li>
+          </ul>
+          <p class="muted mb-0">La liste précise des sous-traitants peut être fournie sur demande via le serveur support.</p>
+        </div>
+      </section>
 
-  <h2>9. Modifications</h2>
-  <p>Nous pouvons mettre à jour cette politique. La date de mise à jour figure en haut de la page.</p>
+      <!-- 7. Transfers -->
+      <section id="transfers" class="card mb-4">
+        <div class="card-body">
+          <h2>7) Transferts internationaux</h2>
+          <p>Selon les prestataires utilisés (ex. Discord, hébergeurs), les données peuvent être traitées en dehors de l’UE. Nous veillons à ce que des garanties adéquates soient en place (clauses contractuelles types, équivalents). </p>
+        </div>
+      </section>
 
-  <hr />
-  <p><a href="index.html">← Retour à l’accueil</a></p>
+      <!-- 8. Security -->
+      <section id="security" class="card mb-4">
+        <div class="card-body">
+          <h2>8) Sécurité</h2>
+          <ul>
+            <li>Accès restreint aux données et gestion des permissions par rôles.</li>
+            <li>Chiffrement en transit (HTTPS) lorsque applicable.</li>
+            <li>Rotation des secrets/API keys et bonnes pratiques de sécurité applicative.</li>
+            <li>Surveillance des erreurs et mises à jour régulières des dépendances.</li>
+          </ul>
+        </div>
+      </section>
 
-  <script>document.getElementById('d').textContent = new Date().toLocaleDateString('fr-FR');</script>
+      <!-- 9. Rights -->
+      <section id="rights" class="card mb-4">
+        <div class="card-body">
+          <h2>9) Vos droits (RGPD)</h2>
+          <p>Vous disposez, selon la loi applicable, des droits d’accès, rectification, effacement, limitation, opposition et portabilité. Pour exercer ces droits :</p>
+          <ol>
+            <li>Contactez-nous via le <a href="https://discord.gg/DM2bEGXCMm" target="_blank" rel="noopener">Serveur support</a> (ou e-mail si disponible).</li>
+            <li>Précisez votre <strong>Discord ID</strong> et le <strong>serveur concerné</strong> (si pertinent).</li>
+            <li>Nous traiterons votre demande dans les meilleurs délais, sous réserve de preuve d’identité suffisante.</li>
+          </ol>
+          <p class="muted mb-0">Vous pouvez aussi déposer une réclamation auprès de votre autorité de contrôle (ex. CNIL en France).</p>
+        </div>
+      </section>
+
+      <!-- 10. Children -->
+      <section id="children" class="card mb-4">
+        <div class="card-body">
+          <h2>10) Utilisateurs mineurs</h2>
+          <p>RayBot s’adresse aux utilisateurs autorisés par Discord, conformément à l’âge minimal et aux lois locales. Nous n’adressons pas sciemment nos services à des personnes ne remplissant pas ces critères.</p>
+        </div>
+      </section>
+
+      <!-- 11. Cookies -->
+      <section id="cookies" class="card mb-4">
+        <div class="card-body">
+          <h2>11) Cookies & trackers</h2>
+          <p>Le site statique de RayBot n’utilise pas de cookies de suivi à des fins publicitaires. Des journaux techniques anonymisés peuvent être générés côté hébergeur pour la sécurité et la performance.</p>
+        </div>
+      </section>
+
+      <!-- 12. Changes -->
+      <section id="changes" class="card">
+        <div class="card-body">
+          <h2>12) Mises à jour de la politique</h2>
+          <p>Nous pouvons mettre à jour cette politique pour refléter l’évolution du service, des lois ou des prestataires. La date de mise à jour figure en haut de page. L’utilisation continue de RayBot vaut acceptation de la version modifiée.</p>
+          <div class="footer-links">
+            <a href="index.html">← Retour à l’accueil</a> ·
+            <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Haut de page ↑</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <button class="btn btn-primary backtop" title="Haut" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString('fr-FR');
+  </script>
 </body>
 </html>

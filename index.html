@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -13,7 +13,7 @@
   <meta property="og:type" content="website" />
   <link rel="icon" href="https://cdn.discordapp.com/avatars/1401275433164472421/fc4bb079b3a4e560281ad9c8d6275345.png?size=128" />
 
-  <!-- Styles (chemins corrigés) -->
+  <!-- Styles -->
   <link rel="stylesheet" href="bootstrap.min.css" />
   <link rel="stylesheet" href="now-ui-kit.css" />
   <link rel="stylesheet" href="main.css" />
@@ -111,19 +111,19 @@
     <div class="cards">
       <div class="card statistic text-center shadow-sm" style="width: 18rem;">
         <div class="card-body">
-          <p class="card-title">000</p>
+          <p class="card-title" id="servers">000</p>
           <p class="font-weight-bold mb-0">serveurs</p>
         </div>
       </div>
       <div class="card statistic text-center shadow-sm" style="width: 18rem;">
         <div class="card-body">
-          <p class="card-title">000</p>
+          <p class="card-title" id="users">000</p>
           <p class="font-weight-bold mb-0">utilisateurs</p>
         </div>
       </div>
       <div class="card statistic text-center shadow-sm" style="width: 18rem;">
         <div class="card-body">
-          <p class="card-title">000</p>
+          <p class="card-title" id="channels">000</p>
           <p class="font-weight-bold mb-0">canaux</p>
         </div>
       </div>
@@ -156,11 +156,29 @@
     </footer>
   </section>
 
-  <!-- Scripts (chemin corrigé) -->
+  <!-- Scripts -->
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
   <script src="now-ui-kit.min.js"></script>
+
+  <!-- Script stats -->
+  <script>
+    async function loadStats() {
+      try {
+        // Remplace par l’URL publique de ton bot/Express
+        const res = await fetch('https://TON-DOMAINE-OU-RENDER-OU-RAILWAY/api/stats', { cache: 'no-store' });
+        const data = await res.json();
+        document.getElementById('servers').textContent  = (data.servers ?? 0).toLocaleString('fr-FR');
+        document.getElementById('users').textContent    = (data.users ?? 0).toLocaleString('fr-FR');
+        document.getElementById('channels').textContent = (data.channels ?? 0).toLocaleString('fr-FR');
+      } catch (e) {
+        console.warn('Impossible de charger les stats:', e);
+      }
+    }
+    loadStats();
+    setInterval(loadStats, 300000); // rafraîchit toutes les 5 min
+  </script>
 </body>
 </html>

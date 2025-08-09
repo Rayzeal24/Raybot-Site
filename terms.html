@@ -4,47 +4,164 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Conditions d’utilisation — RayBot</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <style> body{padding:32px; max-width:920px; margin:0 auto; font-family: Poppins, Arial, sans-serif;} h1,h2{font-weight:800;} .muted{color:#6c757d;} </style>
+
+  <!-- SEO / Open Graph -->
+  <meta name="description" content="Conditions d’utilisation de RayBot : règles d'accès, utilisation autorisée, responsabilité et contact." />
+  <meta property="og:title" content="Conditions d’utilisation — RayBot" />
+  <meta property="og:description" content="Lisez les conditions d’utilisation de RayBot avant de l’utiliser sur votre serveur Discord." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="https://cdn.discordapp.com/avatars/1401275433164472421/fc4bb079b3a4e560281ad9c8d6275345.png?size=128" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="bootstrap.min.css" />
+  <link rel="stylesheet" href="main.css" />
+
+  <style>
+    :root {
+      --txt: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --accent: #4f46e5;
+      --bg: #f8fafc;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --txt:#e5e7eb; --muted:#9ca3af; --card:#0b1220; --border:#1f2a44; --accent:#818cf8; --bg:#060b18;
+      }
+    }
+    body{ background:var(--bg); color:var(--txt); font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; }
+    .container-narrow{ max-width: 920px; }
+    .page{ padding: 32px 20px 48px; }
+    .card{ background:var(--card); border:1px solid var(--border); border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,.04); }
+    .card .card-body{ padding: 24px; }
+    h1{ font-weight:800; letter-spacing:-.02em; }
+    h2{ font-weight:800; font-size:1.25rem; margin-top:1.75rem; }
+    p, li{ line-height: 1.7; }
+    .muted{ color: var(--muted); }
+    .toc a{ text-decoration:none; }
+    .badge-soft{ background: rgba(79,70,229,.1); color:#4f46e5; border-radius:999px; padding:.25rem .6rem; font-size:.75rem; font-weight:700; }
+    .top-links{ display:flex; gap:10px; flex-wrap:wrap; }
+    .top-links a{ text-decoration: none; }
+    .footer-links{ margin-top: 12px; font-size:.95rem; }
+    .backtop{ position:fixed; right:16px; bottom:16px; border-radius:999px; padding:.6rem .9rem; }
+  </style>
 </head>
 <body>
-  <h1>Conditions d’utilisation</h1>
-  <p class="muted">Dernière mise à jour : <span id="d"></span></p>
+  <main class="page">
+    <div class="container container-narrow">
 
-  <h2>1. Acceptation</h2>
-  <p>En invitant ou en utilisant RayBot (« le Bot »), vous acceptez ces Conditions d’utilisation. Si vous n’êtes pas d’accord, n’utilisez pas le Bot.</p>
+      <!-- Header -->
+      <header class="mb-4">
+        <div class="d-flex align-items-center gap-3 mb-2">
+          <img src="https://cdn.discordapp.com/avatars/1401275433164472421/fc4bb079b3a4e560281ad9c8d6275345.png?size=128" width="42" height="42" style="border-radius:10px" alt="RayBot">
+          <span class="badge-soft">RayBot</span>
+        </div>
+        <h1 class="mb-2">Conditions d’utilisation</h1>
+        <p class="muted">Dernière mise à jour : <span id="lastUpdate"></span></p>
+        <div class="top-links">
+          <a class="btn btn-outline-secondary btn-sm" href="index.html">← Retour à l’accueil</a>
+          <a class="btn btn-outline-primary btn-sm" href="privacy.html">Voir la Politique de confidentialité</a>
+        </div>
+      </header>
 
-  <h2>2. Accès et disponibilité</h2>
-  <p>Le Bot est fourni « tel quel ». Nous pouvons modifier, suspendre ou interrompre certaines fonctionnalités à tout moment sans préavis.</p>
+      <!-- Sommaire -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h2 class="mb-3">Sommaire</h2>
+          <ol class="toc">
+            <li><a href="#accept">Acceptation</a></li>
+            <li><a href="#access">Accès et disponibilité</a></li>
+            <li><a href="#use">Utilisation autorisée</a></li>
+            <li><a href="#content">Contenu utilisateur</a></li>
+            <li><a href="#privacy">Données et confidentialité</a></li>
+            <li><a href="#liability">Responsabilité</a></li>
+            <li><a href="#changes">Modifications</a></li>
+            <li><a href="#termination">Résiliation</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ol>
+        </div>
+      </div>
 
-  <h2>3. Utilisation autorisée</h2>
-  <ul>
-    <li>Respectez les <a href="https://discord.com/terms" target="_blank" rel="noopener">Conditions d’utilisation de Discord</a> et leurs politiques.</li>
-    <li>N’utilisez pas le Bot pour harceler, spammer ou enfreindre la loi.</li>
-    <li>Ne tentez pas de contourner les limitations, de décompiler ou de perturber le service.</li>
-  </ul>
+      <!-- Sections -->
+      <section id="accept" class="card mb-4">
+        <div class="card-body">
+          <h2>1) Acceptation</h2>
+          <p>En invitant ou en utilisant RayBot (« le Bot »), vous acceptez ces Conditions d’utilisation. Si vous n’êtes pas d’accord, n’utilisez pas le Bot.</p>
+        </div>
+      </section>
 
-  <h2>4. Contenu utilisateur</h2>
-  <p>Le contenu envoyé via Discord reste la propriété de ses auteurs. Vous nous accordez une licence limitée pour traiter techniquement ce contenu afin de fournir les fonctionnalités du Bot.</p>
+      <section id="access" class="card mb-4">
+        <div class="card-body">
+          <h2>2) Accès et disponibilité</h2>
+          <p>Le Bot est fourni « tel quel ». Nous pouvons modifier, suspendre ou interrompre certaines fonctionnalités à tout moment sans préavis.</p>
+        </div>
+      </section>
 
-  <h2>5. Données et confidentialité</h2>
-  <p>Le traitement des données est décrit dans notre <a href="privacy.html">Politique de confidentialité</a>.</p>
+      <section id="use" class="card mb-4">
+        <div class="card-body">
+          <h2>3) Utilisation autorisée</h2>
+          <ul>
+            <li>Respectez les <a href="https://discord.com/terms" target="_blank" rel="noopener">Conditions d’utilisation de Discord</a> et leurs politiques.</li>
+            <li>N’utilisez pas le Bot pour harceler, spammer ou enfreindre la loi.</li>
+            <li>Ne tentez pas de contourner les limitations, de décompiler ou de perturber le service.</li>
+          </ul>
+        </div>
+      </section>
 
-  <h2>6. Responsabilité</h2>
-  <p>Nous déclinons toute responsabilité pour les pertes indirectes, le manque à gagner ou tout dommage résultant de l’utilisation du Bot. L’utilisation se fait à vos risques.</p>
+      <section id="content" class="card mb-4">
+        <div class="card-body">
+          <h2>4) Contenu utilisateur</h2>
+          <p>Le contenu envoyé via Discord reste la propriété de ses auteurs. Vous nous accordez une licence limitée pour traiter techniquement ce contenu afin de fournir les fonctionnalités du Bot.</p>
+        </div>
+      </section>
 
-  <h2>7. Modifications</h2>
-  <p>Nous pouvons mettre à jour ces Conditions à tout moment. La date de mise à jour figure en haut de la page. L’usage continu du Bot vaut acceptation.</p>
+      <section id="privacy" class="card mb-4">
+        <div class="card-body">
+          <h2>5) Données et confidentialité</h2>
+          <p>Le traitement des données est décrit dans notre <a href="privacy.html">Politique de confidentialité</a>.</p>
+        </div>
+      </section>
 
-  <h2>8. Résiliation</h2>
-  <p>Nous pouvons retirer le Bot d’un serveur qui enfreint ces Conditions ou les politiques de Discord. Vous pouvez cesser d’utiliser le Bot à tout moment en le retirant de votre serveur.</p>
+      <section id="liability" class="card mb-4">
+        <div class="card-body">
+          <h2>6) Responsabilité</h2>
+          <p>Nous déclinons toute responsabilité pour les pertes indirectes, le manque à gagner ou tout dommage résultant de l’utilisation du Bot. L’utilisation se fait à vos risques.</p>
+        </div>
+      </section>
 
-  <h2>9. Contact</h2>
-  <p>Pour toute question, rendez-vous sur le <a href="https://discord.gg/DM2bEGXCMm" target="_blank" rel="noopener">Serveur support</a>.</p>
+      <section id="changes" class="card mb-4">
+        <div class="card-body">
+          <h2>7) Modifications</h2>
+          <p>Nous pouvons mettre à jour ces Conditions à tout moment. La date de mise à jour figure en haut de la page. L’usage continu du Bot vaut acceptation.</p>
+        </div>
+      </section>
 
-  <hr />
-  <p><a href="index.html">← Retour à l’accueil</a></p>
+      <section id="termination" class="card mb-4">
+        <div class="card-body">
+          <h2>8) Résiliation</h2>
+          <p>Nous pouvons retirer le Bot d’un serveur qui enfreint ces Conditions ou les politiques de Discord. Vous pouvez cesser d’utiliser le Bot à tout moment en le retirant de votre serveur.</p>
+        </div>
+      </section>
 
-  <script>document.getElementById('d').textContent = new Date().toLocaleDateString('fr-FR');</script>
+      <section id="contact" class="card">
+        <div class="card-body">
+          <h2>9) Contact</h2>
+          <p>Pour toute question, rendez-vous sur le <a href="https://discord.gg/DM2bEGXCMm" target="_blank" rel="noopener">Serveur support</a>.</p>
+          <div class="footer-links">
+            <a href="index.html">← Retour à l’accueil</a> ·
+            <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Haut de page ↑</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <button class="btn btn-primary backtop" title="Haut" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString('fr-FR');
+  </script>
 </body>
 </html>

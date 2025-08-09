@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>RayBot — Bot Discord multifonction</title>
+
+  <!-- SEO / Open Graph -->
+  <meta name="description" content="RayBot : économie, jeux, invites et personnalisation. Crée ton monde, automatise ton serveur et ajoute une touche de fun à chaque message !" />
+  <meta property="og:title" content="RayBot — Bot Discord multifonction" />
+  <meta property="og:description" content="Économie, jeux, invites et personnalisation. Automatise ton serveur et ajoute une touche de fun !" />
+  <meta property="og:image" content="https://cdn.discordapp.com/avatars/1401275433164472421/fc4bb079b3a4e560281ad9c8d6275345.png?size=512" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="https://cdn.discordapp.com/avatars/1401275433164472421/fc4bb079b3a4e560281ad9c8d6275345.png?size=128" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/now-ui-kit.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,800,900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,600,700,800,900&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"; }
+    .heading{ text-align:center; padding:90px 20px 40px; }
+    .heading .title{ font-weight:800; }
+    .heading .subtitle{ color:#6c757d; max-width:820px; margin:12px auto 0; }
+    .features .title{ text-align:center; font-weight:700; font-size:28px; margin-top:20px;}
+    .features .subtitle{ text-align:center; color:#6c757d; margin-bottom:20px;}
+    .features .cards, .statistics .cards{ display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+    .card h5{ font-weight:700; }
+    .statistic .card-title{ font-size:48px; font-weight:800; margin-bottom:0; line-height:1; letter-spacing:-0.02em; }
+    .page_end{ padding:40px 0 0; }
+    .gs-card .title{ font-weight:800; font-size:24px; }
+    .gs-card .subtitle{ color:#6c757d; }
+    .footer{ text-align:center; padding:24px; color:#6c757d; }
+    .footer a{ color:inherit; text-decoration:underline; }
+    .brand-logo{ width:48px; height:48px; border-radius:12px; object-fit:cover; }
+    .navbar-light .navbar-nav .nav-link{ font-weight:600; }
+    @media (max-width: 576px){ .heading{ padding-top:60px; } }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img class="brand-logo" src="https://cdn.discordapp.com/avatars/1401275433164472421/fc4bb079b3a4e560281ad9c8d6275345.png?size=128" alt="RayBot" />
+      <span class="ml-2 font-weight-bold">RayBot</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Basculer la navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active"><a class="nav-link" href="#">Accueil <span class="sr-only">(actif)</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#features">Fonctionnalités</a></li>
+        <li class="nav-item"><a class="nav-link" href="#stats">Statistiques</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Dashboard (bientôt)</a></li>
+      </ul>
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="privacy.html">Confidentialité</a>
+        <a class="nav-item nav-link" href="terms.html">Conditions</a>
+        <a class="btn btn-outline-primary ml-lg-2" href="https://discord.gg/DM2bEGXCMm" target="_blank" rel="noopener">Serveur support</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="heading">
+    <h1 class="display-5 title">Le bot qui booste ton serveur Discord.</h1>
+    <p class="subtitle">
+      RayBot est un bot multifonction : <strong>économie</strong>, <strong>jeux</strong>, <strong>invites</strong> et <strong>personnalisation</strong>.<br/>
+      Crée ton monde, automatise ton serveur et ajoute une touche de fun à chaque message !
+    </p>
+    <div class="mt-3">
+      <a class="btn btn-primary btn-lg" href="https://discord.com/oauth2/authorize?client_id=1401275433164472421&permissions=8&integration_type=0&scope=bot+applications.commands" target="_blank" rel="noopener">➕ Inviter RayBot</a>
+      <a class="btn btn-secondary btn-lg" href="https://discord.gg/DM2bEGXCMm" target="_blank" rel="noopener">💬 Serveur support</a>
+    </div>
+  </header>
+
+  <!-- Features -->
+  <section id="features" class="features container pb-4">
+    <div class="title">Fonctionnalités principales</div>
+    <div class="subtitle">Un ensemble d’outils pensés pour la croissance et l’animation de ton serveur.</div>
+    <div class="cards">
+      <div class="card shadow-sm" style="width: 20rem;">
+        <div class="card-body">
+          <h5 class="card-title">Économie & Récompenses</h5>
+          <p class="card-text">Système d’économie complet : daily, work, boutique, objets, et événements. Personnalisable par serveur.</p>
+        </div>
+      </div>
+      <div class="card shadow-sm" style="width: 20rem;">
+        <div class="card-body">
+          <h5 class="card-title">Invites & Statistiques</h5>
+          <p class="card-text">Tracking d’invitations, rangs, et tableaux de bord d’activité pour suivre la croissance de ta communauté.</p>
+        </div>
+      </div>
+      <div class="card shadow-sm" style="width: 20rem;">
+        <div class="card-body">
+          <h5 class="card-title">Personnalisation</h5>
+          <p class="card-text">Messages d’accueil, réactions automatiques, profils stylés et commandes fun pour animer les salons.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section id="stats" class="statistics container py-4">
+    <div class="cards">
+      <div class="card statistic text-center shadow-sm" style="width: 18rem;">
+        <div class="card-body">
+          <p class="card-title">000</p>
+          <p class="font-weight-bold mb-0">serveurs</p>
+        </div>
+      </div>
+      <div class="card statistic text-center shadow-sm" style="width: 18rem;">
+        <div class="card-body">
+          <p class="card-title">000</p>
+          <p class="font-weight-bold mb-0">utilisateurs</p>
+        </div>
+      </div>
+      <div class="card statistic text-center shadow-sm" style="width: 18rem;">
+        <div class="card-body">
+          <p class="card-title">000</p>
+          <p class="font-weight-bold mb-0">canaux</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="page_end">
+    <div class="container">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body gs-card text-center">
+          <div class="title">Prêt à essayer RayBot ?</div>
+          <div class="subtitle">Invite RayBot dès maintenant et débloque de nouvelles possibilités pour ton serveur.</div>
+          <a class="btn btn-primary btn-lg mt-3" href="https://discord.com/oauth2/authorize?client_id=1401275433164472421&permissions=8&integration_type=0&scope=bot+applications.commands" target="_blank" rel="noopener">➕ Inviter RayBot</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="bot-footer mb-1">
+        <img src="https://cdn.discordapp.com/avatars/1401275433164472421/fc4bb079b3a4e560281ad9c8d6275345.png?size=128" width="56" height="56" style="border-radius:14px" alt="RayBot" /><br />
+      </div>
+      <div class="small">
+        <a href="privacy.html">Politique de confidentialité</a> ·
+        <a href="terms.html">Conditions d’utilisation</a> ·
+        <a href="https://discord.gg/DM2bEGXCMm" target="_blank" rel="noopener">Support</a>
+      </div>
+      <div class="mt-2">© RayBot — <span id="y"></span></div>
+    </footer>
+  </section>
+
+  <!-- Scripts -->
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  <script src="js/now-ui-kit.min.js"></script>
+</body>
+</html>

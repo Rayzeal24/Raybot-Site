@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -176,8 +176,7 @@
   <script>
     async function loadStats() {
       try {
-        // Remplace par l’URL publique de ton bot/Express
-        const res = await fetch('https://TON-DOMAINE-OU-RENDER-OU-RAILWAY/api/stats', { cache: 'no-store' });
+        const res = await fetch('https://raybot-production-8678.up.railway.app/api/stats', { cache: 'no-store' });
         const data = await res.json();
         document.getElementById('servers').textContent  = (data.servers ?? 0).toLocaleString('fr-FR');
         document.getElementById('users').textContent    = (data.users ?? 0).toLocaleString('fr-FR');

@@ -16,7 +16,7 @@
       --panel2:#242840;
       --text:#e8ecff;
       --muted:#a3a8c2;
-      --primary:#7c5cff;          /* violet/bleu flashy */
+      --primary:#7c5cff;
       --primary-soft:#7c5cff22;
       --border:#2b3150;
       --ok:#3ddc97;
@@ -66,7 +66,7 @@
   <div class="wrap">
     <header class="mb-3">
       <h1>Infos & commandes</h1>
-      <p class="lead">Parcoupe les catégories et retrouve la <strong>description détaillée</strong> de chaque commande.</p>
+      <p class="lead">Parcours les catégories et retrouve la <strong>description détaillée</strong> de chaque commande.</p>
       <div class="mb-3">
         <span class="chip">Dernière mise à jour : <span id="d"></span></span>
         <span class="chip">Langue : FR</span>
@@ -90,8 +90,7 @@
         <div class="tab-pane fade" id="pane-int" role="tabpanel"><div class="grid" id="grid-int"></div></div>
         <div class="tab-pane fade" id="pane-ia"  role="tabpanel"><div class="grid" id="grid-ia"></div></div>
       </div>
-
-     
+    </div><!-- ← fermeture manquante de .tabs -->
 
     <div class="footer">Besoin d’aide ? Rejoins le <a href="https://discord.gg/DM2bEGXCMm" target="_blank">serveur support</a>.</div>
   </div>
@@ -99,127 +98,72 @@
   <script>
     document.getElementById('d').textContent = new Date().toLocaleDateString('fr-FR');
 
+    // Image par défaut si un visuel n'est pas fourni
+    const PLACEHOLDER = "assets/cmds/_placeholder.png";
+
     // --------- Données : EXACTEMENT tes commandes ----------
-    // Tu peux allonger/réécrire les descriptions à volonté.
     const COMMANDS = {
       invites: [
-        {
-          name: "/invite-setup",
-          key: "invite-setup",
+        { name: "/invite-setup",      key: "invite-setup",
           desc: "Assistant complet pour configurer les invitations : choix du salon de bienvenue, style du message (embed ou texte), rôle automatique à l’arrivée, variables dynamiques, et message de test. Idéal pour démarrer rapidement sans oublier un réglage.",
-          extra: "Utilisation typique : lance /invite-setup et suis les étapes. Rejoue-le à tout moment pour ajuster.",
-        },
-        {
-          name: "/invite-message",
-          key: "invite-message",
-          desc: "Définit le **message d’accueil** envoyé quand un membre rejoint via une invite. Supporte les **variables** (ex. {member}, {server}, {inviter}, {invites}) pour personnaliser dynamiquement le texte.",
-          extra: "Astuce : combine {member} + {inviter} pour féliciter la personne qui a invité.",
-        },
-        {
-          name: "/invite-variables",
-          key: "invite-variables",
-          desc: "Affiche la **liste des variables disponibles** pour composer tes messages d’invitation/accueil. Très pratique pour vérifier la syntaxe et tester un rendu.",
-          extra: "Exemples : {member}, {server}, {inviter}, {invites}, {createdAt}…",
-        },
-        {
-          name: "/invite-test",
-          key: "invite-test",
-          desc: "Envoie un **message de test** dans le salon configuré afin de visualiser l’embed, les couleurs, les variables et vérifier que les permissions du bot sont correctes.",
-          extra: "Utilise-le après chaque changement important (nouveau salon, nouvelle couleur).",
-        },
-        {
-          name: "/invite-reset",
-          key: "invite-reset",
-          desc: "Réinitialise les **statistiques d’invitation** d’un membre (par exemple après une correction ou un abus). Les autres membres ne sont pas affectés.",
-          extra: "Pense à prévenir la personne avant la remise à zéro.",
-        },
+          extra: "Utilisation typique : lance /invite-setup et suis les étapes. Rejoue-le à tout moment pour ajuster." },
+        { name: "/invite-message",    key: "invite-message",
+          desc: "Définit le message d’accueil envoyé quand un membre rejoint via une invite. Supporte les variables (ex. {member}, {server}, {inviter}, {invites}) pour un texte dynamique.",
+          extra: "Combine {member} + {inviter} pour remercier l’auteur de l’invite." },
+        { name: "/invite-variables",  key: "invite-variables",
+          desc: "Affiche la liste des variables disponibles pour composer tes messages d’invitation/accueil.",
+          extra: "Exemples : {member}, {server}, {inviter}, {invites}, {createdAt}…" },
+        { name: "/invite-test",       key: "invite-test",
+          desc: "Envoie un message de test dans le salon configuré afin de visualiser l’embed, les couleurs et les variables.",
+          extra: "Utilise-le après chaque modification importante." },
+        { name: "/invite-reset",      key: "invite-reset",
+          desc: "Réinitialise les statistiques d’invitation d’un membre (correction, abus, etc.).",
+          extra: "Pense à communiquer avant la remise à zéro." },
       ],
-
       economie: [
-        {
-          name: "/balance",
-          key: "balance",
-          desc: "Affiche **le solde** d’un utilisateur (le tien par défaut). Parfait pour voir ta monnaie virtuelle et vérifier que tes actions (daily/work) sont bien comptées.",
-          extra: "Astuce : mentionne un membre pour consulter son solde.",
-        },
-        {
-          name: "/daily",
-          key: "daily",
-          desc: "Réclame ta **récompense quotidienne**. Encourage la régularité des membres et anime ton serveur jour après jour.",
-          extra: "Si tu oublies un jour, pas de panique : tu pourras reprendre le lendemain.",
-        },
-        {
-          name: "/work",
-          key: "work",
-          desc: "Effectue un **travail** fictif et gagne des pièces. Soumis à un **cooldown** pour éviter le spam. Idéal pour dynamiser un salon ‘économie’.",
-          extra: "Tip : annonce le cooldown dans #règlement pour éviter les surprises.",
-        },
-        {
-          name: "/cooldowns",
-          key: "cooldowns",
-          desc: "Montre tes **temps de recharge restants** (daily, work, etc.). Très utile pour savoir quand tu peux rejouer.",
-          extra: "Lisible et clair pour tous, pas besoin de retenir les délais.",
-        },
-        {
-          name: "/setcooldown",
-          key: "setcooldown",
-          desc: "Permet d’**ajuster les délais** entre deux utilisations de certaines commandes d’économie. À réserver au staff ayant la configuration du serveur.",
-          extra: "Utilise des valeurs raisonnables pour garder l’économie amusante.",
-        },
-        {
-          name: "/responses",
-          key: "responses",
-          desc: "Gère la **liste des réponses automatiques** (par mots-clés). Tu peux créer des petites interactions pour animer le chat (réactions, messages, etc.).",
-          extra: "Combine avec l’économie pour offrir un petit bonus sur certains mots-clés.",
-        },
-        {
-          name: "/addreponse",
-          key: "addreponse",
-          desc: "Ajoute **une nouvelle réponse automatique**. Défini un mot-clé déclencheur, le message à envoyer, et éventuellement un salon cible.",
-          extra: "Garde des règles simples pour éviter le spam non désiré.",
-        },
+        { name: "/balance",     key: "balance",
+          desc: "Affiche le solde d’un utilisateur (le tien par défaut). Permet de suivre ta monnaie virtuelle.",
+          extra: "Mentionne un membre pour voir son solde." },
+        { name: "/daily",       key: "daily",
+          desc: "Récompense quotidienne. Encourage la régularité des membres.",
+          extra: "Raté un jour ? Reprends le lendemain !" },
+        { name: "/work",        key: "work",
+          desc: "Travaille pour gagner des pièces. Soumis à un cooldown pour éviter le spam.",
+          extra: "Annonce les délais dans un canal d’infos." },
+        { name: "/cooldowns",   key: "cooldowns",
+          desc: "Affiche tes temps de recharge restants (daily, work, etc.).",
+          extra: "Plus besoin de retenir les délais." },
+        { name: "/setcooldown", key: "setcooldown",
+          desc: "Ajuste les délais des commandes économiques (staff).",
+          extra: "Garde un rythme fun et équilibré." },
+        { name: "/responses",   key: "responses",
+          desc: "Gère des réponses automatiques par mots-clés pour animer le chat.",
+          extra: "Peut s’utiliser avec l’économie pour des bonus." },
+        { name: "/addreponse",  key: "addreponse",
+          desc: "Ajoute une nouvelle réponse automatique (mot-clé + message).",
+          extra: "Reste simple pour éviter le spam." },
       ],
-
       interactions: [
-        {
-          name: "/poll",
-          key: "poll",
-          desc: "Crée un **sondage rapide** : question + options. Parfait pour prendre la température de la communauté (projets, événements, choix de jeux…).",
-          extra: "Pense à limiter le nombre d’options pour garder les votes lisibles.",
-        },
-        {
-          name: "/remindme",
-          key: "remindme",
-          desc: "Programme un **rappel personnel** (date/heure). Le bot t’enverra un message privé ou dans le salon selon la mise en œuvre.",
-          extra: "Parfait pour un événement, une réunion, un tirage…",
-        },
-        {
-          name: "/reminders",
-          key: "reminders",
-          desc: "Liste et gère **tes rappels actifs** (voir, annuler, etc.). Utile quand tu en as plusieurs en parallèle.",
-          extra: "Fais un tri régulier pour rester organisé.",
-        },
+        { name: "/poll",       key: "poll",
+          desc: "Crée un sondage (question + options) pour consulter rapidement ta communauté.",
+          extra: "Limite les options pour plus de clarté." },
+        { name: "/remindme",   key: "remindme",
+          desc: "Programme un rappel personnel à une date/heure donnée.",
+          extra: "Idéal pour réunions, tirages, événements." },
+        { name: "/reminders",  key: "reminders",
+          desc: "Liste et gère tes rappels actifs (voir/supprimer).",
+          extra: "Fais un tri régulier." },
       ],
-
       ai: [
-        {
-          name: "/ai-channel",
-          key: "ai-channel",
-          desc: "Définit **le salon dédié** où l’IA répondra aux messages. Évite le hors-sujet en regroupant les conversations IA dans un espace prévu.",
-          extra: "Idée : crée un salon #ia-chat et limite l’accès selon les rôles.",
-        },
-        {
-          name: "/ai-voice",
-          key: "ai-voice",
-          desc: "Active et **configure l’IA vocale** (si disponible) dans un salon vocal. Idéal pour des sessions de discussion ou de lecture.",
-          extra: "Vérifie la latence et les permissions audio du bot.",
-        },
-        {
-          name: "/ia-personality",
-          key: "ia-personality",
-          desc: "Choisis la **personnalité** (ton, style, niveau de liberté) de l’IA. Ajuste l’ambiance : sérieuse, fun, concise, roleplay, etc.",
-          extra: "Teste plusieurs profils pour trouver celui qui colle à ta communauté.",
-        },
+        { name: "/ai-channel",     key: "ai-channel",
+          desc: "Définit le salon dédié où l’IA répondra aux messages.",
+          extra: "Crée #ia-chat et restreins l’accès par rôles si besoin." },
+        { name: "/ai-voice",       key: "ai-voice",
+          desc: "Active et configure l’IA vocale (si dispo) dans un salon vocal.",
+          extra: "Vérifie permissions audio et latence." },
+        { name: "/ia-personality", key: "ia-personality",
+          desc: "Choisis la personnalité/ton de l’IA (sérieux, fun, roleplay…).",
+          extra: "Teste plusieurs profils pour trouver le bon." },
       ],
     };
 
@@ -233,10 +177,10 @@
     function cardHTML(cmd){
       const img = `assets/cmds/${cmd.key}.png`;
       const img2 = `assets/cmds/${cmd.key}.jpg`;
-      // on tente .png puis .jpg via onerror
       return `
         <article class="cmd">
-          <img loading="lazy" src="${img}" alt="${cmd.name}" onerror="this.onerror=null; this.src='${img2}'; this.onerror=function(){this.src='${PLACEHOLDER}'};">
+          <img loading="lazy" src="${img}" alt="${cmd.name}"
+               onerror="this.onerror=null; this.src='${img2}'; this.onerror=function(){this.src='${PLACEHOLDER}'};">
           <div class="cmd-body">
             <span class="name">${cmd.name}</span>
             <p class="desc">${cmd.desc}</p>
@@ -253,7 +197,6 @@
       });
     }
 
-    // Filtre de recherche global
     function attachSearch(){
       const input = document.getElementById('search');
       input.addEventListener('input', ()=>{

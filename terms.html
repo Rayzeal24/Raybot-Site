@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Conditions d’utilisation — RayBot</title>
 
+  <!-- SEO / Open Graph -->
   <meta name="description" content="Conditions d’utilisation de RayBot : règles d'accès, utilisation autorisée, responsabilité et contact." />
   <meta property="og:title" content="Conditions d’utilisation — RayBot" />
   <meta property="og:description" content="Lisez les conditions d’utilisation de RayBot avant de l’utiliser sur votre serveur Discord." />
   <meta property="og:type" content="website" />
   <link rel="icon" href="https://cdn.discordapp.com/avatars/1401275433164472421/fc4bb079b3a4e560281ad9c8d6275345.png?size=128" />
 
+  <!-- Styles -->
   <link rel="stylesheet" href="bootstrap.min.css" />
   <link rel="stylesheet" href="main.css" />
 
@@ -85,67 +87,96 @@
       <section id="accept" class="card mb-4">
         <div class="card-body">
           <h2>1) Acceptation</h2>
-          <p>En ajoutant ou en utilisant RayBot sur un serveur, vous reconnaissez avoir lu et accepté ces Conditions d’utilisation. Si vous n’êtes pas d’accord, veuillez ne pas utiliser le Bot.</p>
+          <p>En ajoutant ou en utilisant RayBot sur un serveur Discord, vous confirmez avoir lu, compris et accepté ces Conditions d’utilisation. Si vous n’acceptez pas l’une des dispositions, vous devez cesser d’utiliser le Bot et le retirer du serveur concerné.</p>
+          <p>Ces Conditions constituent un accord entre vous (administrateurs et utilisateurs finaux) et l’éditeur de RayBot. Elles s’appliquent en complément des <a href="https://discord.com/terms" target="_blank" rel="noopener">Conditions d’utilisation de Discord</a> et de leurs politiques associées (règles communautaires, politiques de développeur, etc.). En cas de conflit, les termes de Discord prévalent dans le cadre de leur plateforme.</p>
+          <p>Vous déclarez avoir l’âge légal requis pour utiliser Discord dans votre juridiction et disposer des droits nécessaires pour inviter et configurer le Bot sur un serveur (permissions d’administration ou autorisation explicite des responsables du serveur).</p>
         </div>
       </section>
 
       <section id="access" class="card mb-4">
         <div class="card-body">
           <h2>2) Accès et disponibilité</h2>
-          <p>RayBot est fourni « tel quel » et « selon disponibilité ». Nous nous réservons le droit de modifier, suspendre ou supprimer certaines fonctionnalités à tout moment, sans préavis. Nous ne garantissons pas une disponibilité continue du service.</p>
+          <p>RayBot est fourni « tel quel » et « selon disponibilité ». Nous nous efforçons d’assurer un service stable, mais nous ne garantissons ni l’absence d’erreurs, ni une disponibilité ininterrompue, ni la compatibilité avec tous les serveurs, régions ou versions de Discord. Des interruptions (maintenance, incidents, changements API Discord, hébergement) peuvent survenir à tout moment.</p>
+          <ul>
+            <li><strong>Mises à jour</strong> : nous pouvons ajouter, modifier ou retirer des fonctionnalités sans préavis, pour des raisons techniques, de sécurité ou d’expérience utilisateur.</li>
+            <li><strong>Uptime et performance</strong> : aucune garantie de niveau de service (SLA) n’est fournie. Les files d’attente, limites de taux (rate limits) ou retards de traitement peuvent affecter certaines commandes.</li>
+            <li><strong>Dépendances tierces</strong> : certaines fonctions peuvent s’appuyer sur des API externes (ex. plateformes IA, hébergement). Leurs indisponibilités ou changements peuvent impacter le Bot.</li>
+          </ul>
+          <p>Nous nous réservons le droit de restreindre l’accès à certaines fonctionnalités à des rôles spécifiques, à des serveurs partenaires, ou sous conditions d’éligibilité (vérification, quotas, limitations d’abus).</p>
         </div>
       </section>
 
       <section id="use" class="card mb-4">
         <div class="card-body">
           <h2>3) Utilisation autorisée</h2>
+          <p>Vous vous engagez à respecter les lois applicables, les règles de Discord et celles du serveur où RayBot est installé. Sans limiter la portée générale de ce qui précède, il est notamment interdit d’utiliser le Bot pour :</p>
           <ul>
-            <li>Vous devez respecter les <a href="https://discord.com/terms" target="_blank" rel="noopener">Conditions d’utilisation de Discord</a> ainsi que leurs règles communautaires.</li>
-            <li>Vous vous engagez à ne pas utiliser le Bot pour du spam, du harcèlement, de la fraude, de la diffusion de contenu illégal ou toute autre activité nuisible.</li>
-            <li>Il est interdit de tenter de contourner les limitations, d’analyser ou de décompiler le code, ou de perturber le bon fonctionnement du service.</li>
+            <li><strong>Harcèlement, spam ou fraude</strong> : envoi de messages massifs non sollicités, arnaques, extorsion, intimidation, menaces, doxxing.</li>
+            <li><strong>Contenus illégaux ou dangereux</strong> : apologie de crimes, incitation à la haine, violences, exploitation sexuelle, diffusion de malwares, violation de propriété intellectuelle.</li>
+            <li><strong>Contournement technique</strong> : tenter d’outrepasser les limites d’usage, désassembler, décompiler, pratiquer l’ingénierie inverse, manipuler les clés API ou interférer avec l’infrastructure.</li>
+            <li><strong>Collecte abusive</strong> : aspirer des données d’utilisateurs sans base légale, consentement ou finalité légitime décrite dans la Politique de confidentialité.</li>
           </ul>
+          <p>Selon la configuration du serveur, certaines commandes peuvent être limitées à des rôles précis (ex. modérateurs/admin). Vous êtes responsable de la bonne configuration des permissions Discord afférentes. Toute tentative d’exploiter un bug ou une faille est strictement interdite et peut entraîner une suspension d’accès.</p>
+          <p>Vous comprenez et acceptez que des limites d’utilisation (quotas/jour, cooldowns, restrictions par canal) puissent être appliquées afin d’assurer une utilisation équitable et prévenir les abus.</p>
         </div>
       </section>
 
       <section id="content" class="card mb-4">
         <div class="card-body">
           <h2>4) Contenu utilisateur</h2>
-          <p>Le contenu que vous transmettez via Discord reste votre propriété. Toutefois, vous accordez à RayBot une autorisation limitée d’utiliser, traiter et stocker ce contenu uniquement dans le but de fournir les fonctionnalités proposées.</p>
+          <p>Le contenu (messages, fichiers, pseudos, images, etc.) que vous transmettez via Discord reste votre propriété ou celle des ayants droit. En utilisant RayBot, vous accordez une licence limitée, non exclusive, mondiale et révocable permettant au Bot de recevoir, traiter, afficher, stocker temporairement et, le cas échéant, transformer techniquement ce contenu dans le seul but de fournir les fonctionnalités prévues (ex. réponses, logs d’actions, systèmes d’économie ou de jeu).</p>
+          <p>Vous garantissez détenir les droits nécessaires sur le contenu partagé et qu’il n’enfreint pas les droits d’autrui (droits d’auteur, marques, droits de la personnalité). Vous êtes seul responsable du contenu envoyé depuis votre compte et de son respect des lois et politiques applicables.</p>
+          <p>Nous pouvons supprimer l’accès à des fonctionnalités ou effacer des données si nous estimons, de bonne foi, que du contenu est illicite, viole ces Conditions ou les politiques de Discord, ou expose des utilisateurs à un risque.</p>
         </div>
       </section>
 
       <section id="privacy" class="card mb-4">
         <div class="card-body">
           <h2>5) Données et confidentialité</h2>
-          <p>Les informations relatives à la collecte, l’utilisation et la protection des données sont détaillées dans notre <a href="privacy.html">Politique de confidentialité</a>. Celle-ci décrit les données collectées, leur finalité, ainsi que vos droits d’accès et de suppression.</p>
+          <p>Le traitement des données personnelles et techniques est décrit en détail dans la <a href="privacy.html">Politique de confidentialité</a>. Elle précise notamment :</p>
+          <ul>
+            <li><strong>Quelles données</strong> peuvent être traitées (identifiants Discord, messages nécessaires au fonctionnement, journaux techniques, préférences liées aux commandes, etc.).</li>
+            <li><strong>La base légale</strong> (intérêt légitime, exécution d’un service, consentement lorsqu’il est requis).</li>
+            <li><strong>Les finalités</strong> (fourniture des fonctionnalités, sécurité, prévention des abus, amélioration du service).</li>
+            <li><strong>La durée de conservation</strong> et les critères utilisés pour la déterminer.</li>
+            <li><strong>Vos droits</strong> (accès, rectification, effacement, opposition, limitation) et la procédure pour les exercer.</li>
+            <li><strong>Les sous-traitants/tiers</strong> éventuellement impliqués (hébergeurs, prestataires IA, bases de données) et les garanties associées.</li>
+          </ul>
+          <p>Selon vos réglages d’hébergement, certaines données (par ex. fichiers <code>data/*.json</code>) peuvent ne pas persister après un redéploiement. Il vous appartient, en tant qu’administrateur de serveur, d’effectuer les sauvegardes nécessaires ou d’utiliser les mécanismes fournis (export/import) lorsque c’est pertinent.</p>
         </div>
       </section>
 
       <section id="liability" class="card mb-4">
         <div class="card-body">
           <h2>6) Responsabilité</h2>
-          <p>Nous ne pouvons être tenus responsables des dommages indirects, pertes de données, interruptions ou tout autre préjudice lié à l’utilisation du Bot. Vous utilisez RayBot à vos propres risques.</p>
+          <p>Dans toute la mesure permise par la loi, RayBot et ses éditeurs déclinent toute responsabilité pour les dommages indirects, spéciaux, consécutifs ou punitifs, la perte de profits, la perte de données, l’interruption d’activité, l’atteinte à la réputation, ou tout préjudice découlant de l’utilisation ou de l’impossibilité d’utiliser le Bot.</p>
+          <p>Sans limiter ce qui précède, nous ne saurions être responsables (i) des actes des utilisateurs, administrateurs de serveurs ou tiers ; (ii) des modifications ou interruptions dues à Discord ou à des prestataires externes ; (iii) des erreurs de configuration de permissions ; (iv) de toute utilisation non conforme de RayBot ; (v) d’événements de force majeure.</p>
+          <p>Vous acceptez d’indemniser et de tenir indemnes RayBot et ses éditeurs contre toute réclamation, dommage, responsabilité, coût et dépense (y compris frais raisonnables d’avocat) résultant (a) de votre utilisation du Bot en violation de ces Conditions ou du droit applicable ; (b) d’un contenu que vous soumettez ; (c) de tout litige au sein de votre serveur.</p>
         </div>
       </section>
 
       <section id="changes" class="card mb-4">
         <div class="card-body">
           <h2>7) Modifications</h2>
-          <p>Ces Conditions peuvent être mises à jour à tout moment. La date de mise à jour indiquée en haut de cette page fait foi. L’utilisation continue du Bot après une modification vaut acceptation des nouvelles conditions.</p>
+          <p>Nous pouvons mettre à jour ces Conditions afin de refléter des changements légaux, techniques ou fonctionnels. La date figurant en haut de la page indique la dernière révision. En continuant d’utiliser RayBot après une mise à jour, vous acceptez les Conditions révisées.</p>
+          <p>Lorsque les modifications ont un impact matériel sur vos droits, nous ferons des efforts raisonnables pour vous en informer via des canaux appropriés (ex. message sur le serveur support, note de version). Il vous incombe toutefois de consulter régulièrement cette page.</p>
         </div>
       </section>
 
       <section id="termination" class="card mb-4">
         <div class="card-body">
           <h2>8) Résiliation</h2>
-          <p>Nous nous réservons le droit de retirer RayBot de tout serveur qui ne respecte pas ces Conditions ou les règles de Discord. Vous pouvez cesser d’utiliser le Bot à tout moment en le retirant de votre serveur.</p>
+          <p>Nous pouvons suspendre ou retirer RayBot d’un serveur, en tout ou partie, si nous constatons une violation de ces Conditions, des politiques de Discord, de la loi, ou un usage abusif ou dangereux. Dans la mesure du possible et raisonnable, nous pourrons tenter un contact préalable avec les responsables du serveur.</p>
+          <p>Vous pouvez mettre fin à l’utilisation à tout moment en retirant RayBot du serveur. Certaines données résiduelles (ex. logs techniques ou sauvegardes nécessaires) peuvent être conservées temporairement pour des obligations légales, de sécurité ou de prévention de fraude, conformément à la Politique de confidentialité.</p>
+          <p>Les sections relatives à la responsabilité, à la propriété intellectuelle, aux licences et aux dispositions générales (notamment droit applicable) survivent à la résiliation.</p>
         </div>
       </section>
 
       <section id="contact" class="card">
         <div class="card-body">
           <h2>9) Contact</h2>
-          <p>Pour toute question ou réclamation concernant RayBot, merci de rejoindre le <a href="https://discord.gg/DM2bEGXCMm" target="_blank" rel="noopener">Serveur support</a>.</p>
+          <p>Pour toute question, demande liée à vos droits, signalement d’abus ou demande de partenariat, veuillez rejoindre le <a href="https://discord.gg/DM2bEGXCMm" target="_blank" rel="noopener">Serveur support</a>. Pour des demandes sensibles (signalement de sécurité), merci d’indiquer clairement l’objet et de fournir des éléments reproductibles si possible.</p>
+          <p class="muted">Dispositions générales : si une clause de ces Conditions est jugée invalide, les autres demeurent applicables. À défaut d’accord amiable, le droit applicable et la juridiction compétente sont déterminés selon la loi de votre pays de résidence, sous réserve des dispositions impératives. La non-application d’un droit ou d’une clause ne vaut pas renonciation.</p>
           <div class="footer-links">
             <a href="index.html">← Retour à l’accueil</a> ·
             <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Haut de page ↑</a>

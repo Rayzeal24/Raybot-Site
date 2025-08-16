@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RayBot — Infos commandes</title>
+  <title>RayBot — Infos & commandes</title>
 
   <link rel="stylesheet" href="bootstrap.min.css" />
   <link rel="stylesheet" href="main.css" />
@@ -16,39 +16,45 @@
       --panel2:#242840;
       --text:#e8ecff;
       --muted:#a3a8c2;
-      --primary:#7c5cff;
+      --primary:#7c5cff;          /* violet/bleu flashy */
       --primary-soft:#7c5cff22;
       --border:#2b3150;
+      --ok:#3ddc97;
     }
     body{ background:var(--bg); color:var(--text); font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial; }
     .navbar{ background:linear-gradient(90deg,#141621,#1b1e2c); border-bottom:1px solid var(--border); }
     .navbar .navbar-brand, .navbar .nav-link{ color:var(--text)!important; }
-    .wrap{ max-width: 1100px; margin: 40px auto; padding: 0 16px; }
+    .wrap{ max-width: 1200px; margin: 32px auto 40px; padding: 0 16px; }
     h1{ font-weight:800; letter-spacing:-.02em; }
     .lead{ color:var(--muted); }
-    .tabs{
-      background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-    .nav-tabs{ border-bottom:none; gap:8px; flex-wrap:wrap; }
-    .nav-tabs .nav-link{
-      border:none; color:var(--muted); font-weight:700; border-radius:999px; padding:.5rem .9rem;
-      background:transparent;
-    }
-    .nav-tabs .nav-link.active{
-      color:#fff; background:var(--primary); box-shadow:0 8px 20px var(--primary-soft);
-    }
-    .tab-content{ background:var(--panel2); border:1px solid var(--border); border-radius:14px; padding:18px; }
-    .cmd{
-      background:#1f2440; border:1px solid var(--border); border-radius:12px; padding:14px 16px; margin-bottom:12px;
-    }
-    .cmd .name{
-      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-weight:800; color:var(--primary);
-    }
-    .cmd .desc{ color:var(--text); margin:6px 0 0; }
     .chip{ display:inline-block; background:#0f1333; border:1px solid var(--border); color:var(--muted); padding:.25rem .6rem; border-radius:999px; font-size:.8rem; margin-right:6px; }
+    .searchbar{ background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:14px 16px; color:var(--text); width:100%; }
+    .tabs{ background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:16px; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+    .nav-tabs{ border-bottom:none; gap:8px; flex-wrap:wrap; }
+    .nav-tabs .nav-link{ border:none; color:var(--muted); font-weight:700; border-radius:999px; padding:.5rem .9rem; background:transparent; }
+    .nav-tabs .nav-link.active{ color:#fff; background:var(--primary); box-shadow:0 8px 20px var(--primary-soft); }
+    .tab-content{ background:var(--panel2); border:1px solid var(--border); border-radius:14px; padding:18px; }
+    .grid{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:16px; }
+    @media (max-width: 992px){ .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 576px){ .grid{ grid-template-columns: 1fr; } }
+
+    .cmd{
+      background:#1f2440; border:1px solid var(--border); border-radius:14px; overflow:hidden; display:flex; flex-direction:column;
+    }
+    .cmd img{
+      width:100%; height:160px; object-fit:cover; background:#10132b;
+    }
+    .cmd-body{ padding:14px 14px 12px; }
+    .cmd .name{
+      display:inline-block; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      font-weight:800; color:var(--primary); margin-bottom:6px;
+    }
+    .cmd .desc{ color:var(--text); margin:4px 0 8px; line-height:1.55; }
+    .cmd .extra{ color:var(--muted); font-size:.9rem; }
+    .badge-soft{ background:var(--primary-soft); color:#cfc7ff; border:1px solid var(--border); padding:.15rem .5rem; border-radius:999px; font-size:.75rem; font-weight:700; }
     .footer{ text-align:center; color:var(--muted); margin:24px 0 40px; }
-    a.btn-primary { background:var(--primary); border-color:var(--primary); }
+    .note{ color:var(--muted); font-size:.9rem; }
+    .highlight{ color:var(--ok); }
   </style>
 </head>
 <body>
@@ -60,11 +66,14 @@
   <div class="wrap">
     <header class="mb-3">
       <h1>Infos & commandes</h1>
-      <p class="lead">Choisis une catégorie pour voir les commandes disponibles de RayBot, avec une courte explication.</p>
-      <div>
+      <p class="lead">Parcoupe les catégories et retrouve la <strong>description détaillée</strong> de chaque commande. Tu peux aussi <strong>ajouter une image</strong> de démonstration pour chaque commande (voir plus bas).</p>
+      <div class="mb-3">
         <span class="chip">Dernière mise à jour : <span id="d"></span></span>
         <span class="chip">Langue : FR</span>
       </div>
+
+      <input id="search" class="searchbar" type="search" placeholder="🔎 Rechercher une commande (ex: /invite-setup, /daily, IA…)" />
+      <p class="note mt-2">Astuce : tape <span class="badge-soft">/</span> puis le début d’une commande pour filtrer instantanément.</p>
     </header>
 
     <div class="tabs">
@@ -76,40 +85,16 @@
       </ul>
 
       <div class="tab-content mt-3" id="content">
-        <!-- INVITES -->
-        <div class="tab-pane fade show active" id="pane-inv" role="tabpanel">
-          <div class="cmd"><div class="name">/invite-message</div><p class="desc">Configure le message d’accueil/invitation envoyé aux nouveaux membres.</p></div>
-          <div class="cmd"><div class="name">/invite-reset</div><p class="desc">Réinitialise les statistiques d’invites d’un membre.</p></div>
-          <div class="cmd"><div class="name">/invite-setup</div><p class="desc">Assistant de configuration des invites (salon, embed, auto-role, etc.).</p></div>
-          <div class="cmd"><div class="name">/invite-test</div><p class="desc">Envoie un message de test pour vérifier la configuration actuelle.</p></div>
-          <div class="cmd"><div class="name">/invite-variables</div><p class="desc">Liste les variables utilisables dans tes messages (ex. {member}, {server}, {invites}).</p></div>
-        </div>
-
-        <!-- ECONOMIE -->
-        <div class="tab-pane fade" id="pane-eco" role="tabpanel">
-          <div class="cmd"><div class="name">/addreponse</div><p class="desc">Ajoute une réponse automatique liée au système d’économie (si prévu).</p></div>
-          <div class="cmd"><div class="name">/balance</div><p class="desc">Affiche ton solde ou celui d’un membre.</p></div>
-          <div class="cmd"><div class="name">/cooldowns</div><p class="desc">Montre tes temps de recharge restants pour les actions d’économie.</p></div>
-          <div class="cmd"><div class="name">/daily</div><p class="desc">Récupère la récompense quotidienne.</p></div>
-          <div class="cmd"><div class="name">/responses</div><p class="desc">Gère des réponses automatiques (mots-clés) liées à l’économie ou générales.</p></div>
-          <div class="cmd"><div class="name">/setcooldown</div><p class="desc">Définit les temps de recharge (admin).</p></div>
-          <div class="cmd"><div class="name">/work</div><p class="desc">Travaille pour gagner des pièces. Soumis à un cooldown.</p></div>
-        </div>
-
-        <!-- INTERACTIONS -->
-        <div class="tab-pane fade" id="pane-int" role="tabpanel">
-          <div class="cmd"><div class="name">/poll</div><p class="desc">Crée un sondage simple dans un salon.</p></div>
-          <div class="cmd"><div class="name">/reminders</div><p class="desc">Gère tes rappels (liste/suppression).</p></div>
-          <div class="cmd"><div class="name">/remindme</div><p class="desc">Crée un rappel unique pour une date/heure précises.</p></div>
-        </div>
-
-        <!-- IA -->
-        <div class="tab-pane fade" id="pane-ia" role="tabpanel">
-          <div class="cmd"><div class="name">/ai-channel</div><p class="desc">Définit le salon où l’IA répondra aux messages.</p></div>
-          <div class="cmd"><div class="name">/ai-voice</div><p class="desc">Active ou configure l’IA vocale dans un salon vocal.</p></div>
-          <div class="cmd"><div class="name">/ia-personality</div><p class="desc">Choisis la personnalité/ton que l’IA doit adopter.</p></div>
-        </div>
+        <div class="tab-pane fade show active" id="pane-inv" role="tabpanel"><div class="grid" id="grid-inv"></div></div>
+        <div class="tab-pane fade" id="pane-eco" role="tabpanel"><div class="grid" id="grid-eco"></div></div>
+        <div class="tab-pane fade" id="pane-int" role="tabpanel"><div class="grid" id="grid-int"></div></div>
+        <div class="tab-pane fade" id="pane-ia"  role="tabpanel"><div class="grid" id="grid-ia"></div></div>
       </div>
+
+      <p class="note mt-3 mb-0">
+        📸 Pour afficher une image : place un fichier <code>.png</code> ou <code>.jpg</code> dans <code>/assets/cmds/</code> avec le <strong>même nom</strong> que la commande (ex. <code>invite-setup.png</code>, <code>daily.jpg</code>).<br />
+        ➜ Dossier recommandé : <code>/assets/cmds/</code>. Un placeholder s’affiche si l’image manque.
+      </p>
     </div>
 
     <div class="footer">Besoin d’aide ? Rejoins le <a href="https://discord.gg/DM2bEGXCMm" target="_blank">serveur support</a>.</div>
@@ -117,7 +102,184 @@
 
   <script>
     document.getElementById('d').textContent = new Date().toLocaleDateString('fr-FR');
+
+    // --------- Données : EXACTEMENT tes commandes ----------
+    // Tu peux allonger/réécrire les descriptions à volonté.
+    const COMMANDS = {
+      invites: [
+        {
+          name: "/invite-setup",
+          key: "invite-setup",
+          desc: "Assistant complet pour configurer les invitations : choix du salon de bienvenue, style du message (embed ou texte), rôle automatique à l’arrivée, variables dynamiques, et message de test. Idéal pour démarrer rapidement sans oublier un réglage.",
+          extra: "Utilisation typique : lance /invite-setup et suis les étapes. Rejoue-le à tout moment pour ajuster.",
+        },
+        {
+          name: "/invite-message",
+          key: "invite-message",
+          desc: "Définit le **message d’accueil** envoyé quand un membre rejoint via une invite. Supporte les **variables** (ex. {member}, {server}, {inviter}, {invites}) pour personnaliser dynamiquement le texte.",
+          extra: "Astuce : combine {member} + {inviter} pour féliciter la personne qui a invité.",
+        },
+        {
+          name: "/invite-variables",
+          key: "invite-variables",
+          desc: "Affiche la **liste des variables disponibles** pour composer tes messages d’invitation/accueil. Très pratique pour vérifier la syntaxe et tester un rendu.",
+          extra: "Exemples : {member}, {server}, {inviter}, {invites}, {createdAt}…",
+        },
+        {
+          name: "/invite-test",
+          key: "invite-test",
+          desc: "Envoie un **message de test** dans le salon configuré afin de visualiser l’embed, les couleurs, les variables et vérifier que les permissions du bot sont correctes.",
+          extra: "Utilise-le après chaque changement important (nouveau salon, nouvelle couleur).",
+        },
+        {
+          name: "/invite-reset",
+          key: "invite-reset",
+          desc: "Réinitialise les **statistiques d’invitation** d’un membre (par exemple après une correction ou un abus). Les autres membres ne sont pas affectés.",
+          extra: "Pense à prévenir la personne avant la remise à zéro.",
+        },
+      ],
+
+      economie: [
+        {
+          name: "/balance",
+          key: "balance",
+          desc: "Affiche **le solde** d’un utilisateur (le tien par défaut). Parfait pour voir ta monnaie virtuelle et vérifier que tes actions (daily/work) sont bien comptées.",
+          extra: "Astuce : mentionne un membre pour consulter son solde.",
+        },
+        {
+          name: "/daily",
+          key: "daily",
+          desc: "Réclame ta **récompense quotidienne**. Encourage la régularité des membres et anime ton serveur jour après jour.",
+          extra: "Si tu oublies un jour, pas de panique : tu pourras reprendre le lendemain.",
+        },
+        {
+          name: "/work",
+          key: "work",
+          desc: "Effectue un **travail** fictif et gagne des pièces. Soumis à un **cooldown** pour éviter le spam. Idéal pour dynamiser un salon ‘économie’.",
+          extra: "Tip : annonce le cooldown dans #règlement pour éviter les surprises.",
+        },
+        {
+          name: "/cooldowns",
+          key: "cooldowns",
+          desc: "Montre tes **temps de recharge restants** (daily, work, etc.). Très utile pour savoir quand tu peux rejouer.",
+          extra: "Lisible et clair pour tous, pas besoin de retenir les délais.",
+        },
+        {
+          name: "/setcooldown",
+          key: "setcooldown",
+          desc: "Permet d’**ajuster les délais** entre deux utilisations de certaines commandes d’économie. À réserver au staff ayant la configuration du serveur.",
+          extra: "Utilise des valeurs raisonnables pour garder l’économie amusante.",
+        },
+        {
+          name: "/responses",
+          key: "responses",
+          desc: "Gère la **liste des réponses automatiques** (par mots-clés). Tu peux créer des petites interactions pour animer le chat (réactions, messages, etc.).",
+          extra: "Combine avec l’économie pour offrir un petit bonus sur certains mots-clés.",
+        },
+        {
+          name: "/addreponse",
+          key: "addreponse",
+          desc: "Ajoute **une nouvelle réponse automatique**. Défini un mot-clé déclencheur, le message à envoyer, et éventuellement un salon cible.",
+          extra: "Garde des règles simples pour éviter le spam non désiré.",
+        },
+      ],
+
+      interactions: [
+        {
+          name: "/poll",
+          key: "poll",
+          desc: "Crée un **sondage rapide** : question + options. Parfait pour prendre la température de la communauté (projets, événements, choix de jeux…).",
+          extra: "Pense à limiter le nombre d’options pour garder les votes lisibles.",
+        },
+        {
+          name: "/remindme",
+          key: "remindme",
+          desc: "Programme un **rappel personnel** (date/heure). Le bot t’enverra un message privé ou dans le salon selon la mise en œuvre.",
+          extra: "Parfait pour un événement, une réunion, un tirage…",
+        },
+        {
+          name: "/reminders",
+          key: "reminders",
+          desc: "Liste et gère **tes rappels actifs** (voir, annuler, etc.). Utile quand tu en as plusieurs en parallèle.",
+          extra: "Fais un tri régulier pour rester organisé.",
+        },
+      ],
+
+      ai: [
+        {
+          name: "/ai-channel",
+          key: "ai-channel",
+          desc: "Définit **le salon dédié** où l’IA répondra aux messages. Évite le hors-sujet en regroupant les conversations IA dans un espace prévu.",
+          extra: "Idée : crée un salon #ia-chat et limite l’accès selon les rôles.",
+        },
+        {
+          name: "/ai-voice",
+          key: "ai-voice",
+          desc: "Active et **configure l’IA vocale** (si disponible) dans un salon vocal. Idéal pour des sessions de discussion ou de lecture.",
+          extra: "Vérifie la latence et les permissions audio du bot.",
+        },
+        {
+          name: "/ia-personality",
+          key: "ia-personality",
+          desc: "Choisis la **personnalité** (ton, style, niveau de liberté) de l’IA. Ajuste l’ambiance : sérieuse, fun, concise, roleplay, etc.",
+          extra: "Teste plusieurs profils pour trouver celui qui colle à ta communauté.",
+        },
+      ],
+    };
+
+    const CATEGORIES = [
+      { id: "invites",  grid: "grid-inv" },
+      { id: "economie", grid: "grid-eco" },
+      { id: "interactions", grid: "grid-int" },
+      { id: "ai", grid: "grid-ia" },
+    ];
+
+    const PLACEHOLDER = "assets/cmds/_placeholder.png"; // image par défaut si pas d’aperçu
+
+    function cardHTML(cmd){
+      const img = `assets/cmds/${cmd.key}.png`;
+      const img2 = `assets/cmds/${cmd.key}.jpg`;
+      // on tente .png puis .jpg via onerror
+      return `
+        <article class="cmd">
+          <img loading="lazy" src="${img}" alt="${cmd.name}" onerror="this.onerror=null; this.src='${img2}'; this.onerror=function(){this.src='${PLACEHOLDER}'};">
+          <div class="cmd-body">
+            <span class="name">${cmd.name}</span>
+            <p class="desc">${cmd.desc}</p>
+            <p class="extra"><span class="badge-soft">Astuce</span> ${cmd.extra}</p>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderAll(){
+      CATEGORIES.forEach(cat=>{
+        const list = COMMANDS[cat.id];
+        document.getElementById(cat.grid).innerHTML = list.map(cardHTML).join("");
+      });
+    }
+
+    // Filtre de recherche global
+    function attachSearch(){
+      const input = document.getElementById('search');
+      input.addEventListener('input', ()=>{
+        const q = input.value.toLowerCase().trim();
+        CATEGORIES.forEach(cat=>{
+          const list = COMMANDS[cat.id];
+          const filtered = list.filter(c =>
+            c.name.toLowerCase().includes(q) ||
+            c.desc.toLowerCase().includes(q) ||
+            (c.extra && c.extra.toLowerCase().includes(q))
+          );
+          document.getElementById(cat.grid).innerHTML = filtered.map(cardHTML).join("");
+        });
+      });
+    }
+
+    renderAll();
+    attachSearch();
   </script>
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>

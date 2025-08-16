@@ -66,7 +66,7 @@
   <div class="wrap">
     <header class="mb-3">
       <h1>Infos & commandes</h1>
-      <p class="lead">Parcoupe les catégories et retrouve la <strong>description détaillée</strong> de chaque commande. Tu peux aussi <strong>ajouter une image</strong> de démonstration pour chaque commande (voir plus bas).</p>
+      <p class="lead">Parcoupe les catégories et retrouve la <strong>description détaillée</strong> de chaque commande.</p>
       <div class="mb-3">
         <span class="chip">Dernière mise à jour : <span id="d"></span></span>
         <span class="chip">Langue : FR</span>
@@ -91,11 +91,7 @@
         <div class="tab-pane fade" id="pane-ia"  role="tabpanel"><div class="grid" id="grid-ia"></div></div>
       </div>
 
-      <p class="note mt-3 mb-0">
-        📸 Pour afficher une image : place un fichier <code>.png</code> ou <code>.jpg</code> dans <code>/assets/cmds/</code> avec le <strong>même nom</strong> que la commande (ex. <code>invite-setup.png</code>, <code>daily.jpg</code>).<br />
-        ➜ Dossier recommandé : <code>/assets/cmds/</code>. Un placeholder s’affiche si l’image manque.
-      </p>
-    </div>
+     
 
     <div class="footer">Besoin d’aide ? Rejoins le <a href="https://discord.gg/DM2bEGXCMm" target="_blank">serveur support</a>.</div>
   </div>
@@ -233,8 +229,6 @@
       { id: "interactions", grid: "grid-int" },
       { id: "ai", grid: "grid-ia" },
     ];
-
-    const PLACEHOLDER = "assets/cmds/_placeholder.png"; // image par défaut si pas d’aperçu
 
     function cardHTML(cmd){
       const img = `assets/cmds/${cmd.key}.png`;

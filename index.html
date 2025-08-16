@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -40,9 +40,11 @@
     .features .cards, .statistics .cards{ display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
     .card h5{ font-weight:700; }
     .statistic .card-title{ font-size:48px; font-weight:800; margin-bottom:0; line-height:1; letter-spacing:-0.02em; }
-    .page_end{ padding:40px 0 0; }
-    .gs-card .title{ font-weight:800; font-size:24px; }
-    .gs-card .subtitle{ color:#6c757d; }
+    .page_end{ position:relative; background:url('https://raybot.fr/assets/banner-raybot.jpg') center/cover no-repeat; padding:80px 20px; border-radius:12px; overflow:hidden; }
+    .page_end::before{ content:""; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.55); }
+    .page_end .container{ position:relative; z-index:1; }
+    .gs-card .title{ font-weight:800; font-size:32px; color:white; }
+    .gs-card .subtitle{ color:#f1f1f1; font-size:18px; }
     .footer{ text-align:center; padding:24px; color:#6c757d; }
     .footer a{ color:inherit; text-decoration:underline; }
     .brand-logo{ width:48px; height:48px; border-radius:12px; object-fit:cover; }
@@ -141,13 +143,11 @@
 
   <!-- CTA -->
   <section class="page_end">
-    <div class="container">
-      <div class="card border-0 shadow-sm">
-        <div class="card-body gs-card text-center">
-          <div class="title">Prêt à essayer RayBot ?</div>
-          <div class="subtitle">Invite RayBot dès maintenant et débloque de nouvelles possibilités pour ton serveur.</div>
-          <a class="btn btn-primary btn-lg mt-3" href="https://discord.com/oauth2/authorize?client_id=1401275433164472421&permissions=8&integration_type=0&scope=bot+applications.commands" target="_blank" rel="noopener">➕ Inviter RayBot</a>
-        </div>
+    <div class="container text-center">
+      <div class="gs-card">
+        <div class="title">Prêt à essayer RayBot ?</div>
+        <div class="subtitle">Invite RayBot dès maintenant et débloque de nouvelles possibilités pour ton serveur.</div>
+        <a class="btn btn-primary btn-lg mt-3" href="https://discord.com/oauth2/authorize?client_id=1401275433164472421&permissions=8&integration_type=0&scope=bot+applications.commands" target="_blank" rel="noopener">➕ Inviter RayBot</a>
       </div>
     </div>
 
@@ -186,7 +186,7 @@
       }
     }
     loadStats();
-    setInterval(loadStats, 300000); // rafraîchit toutes les 5 min
+    setInterval(loadStats, 300000);
   </script>
 </body>
 </html>

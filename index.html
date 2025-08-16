@@ -50,11 +50,6 @@
     .brand-logo{ width:48px; height:48px; border-radius:12px; object-fit:cover; }
     .navbar-light .navbar-nav .nav-link{ font-weight:600; }
     @media (max-width: 576px){ .heading{ padding-top:60px; } }
-
-    /* Styles du modal "Infos" */
-    .category-pill{ cursor:pointer; }
-    .cmd-badge{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-    .cmd-card{ border:1px solid #e9ecef; border-radius:12px; padding:14px; }
   </style>
 </head>
 <body>
@@ -71,10 +66,7 @@
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active"><a class="nav-link" href="#">Accueil <span class="sr-only">(actif)</span></a></li>
-        <!-- Remplacement: bouton Infos qui ouvre le modal -->
-        <li class="nav-item">
-          <a class="nav-link" href="#" data-toggle="modal" data-target="#infosModal">Infos</a>
-        </li>
+        <li class="nav-item"><a class="nav-link" href="info.html">Infos</a></li>
         <li class="nav-item"><a class="nav-link" href="#stats">Statistiques</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Dashboard (bientôt)</a></li>
       </ul>
@@ -85,59 +77,6 @@
       </div>
     </div>
   </nav>
-
-  <!-- Modal Infos -->
-  <div class="modal fade" id="infosModal" tabindex="-1" role="dialog" aria-labelledby="infosModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title font-weight-bold" id="infosModalLabel">Commandes par catégorie</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- Choix de catégorie -->
-          <div class="mb-3">
-            <div class="nav nav-pills" id="categoryPills" role="tablist">
-              <a class="nav-link active category-pill" id="pill-invites" data-toggle="pill" href="#tabInvites" role="tab" aria-controls="tabInvites" aria-selected="true">Invites</a>
-              <a class="nav-link category-pill" id="pill-economie" data-toggle="pill" href="#tabEconomie" role="tab" aria-controls="tabEconomie" aria-selected="false">Économie</a>
-              <a class="nav-link category-pill" id="pill-ia" data-toggle="pill" href="#tabIA" role="tab" aria-controls="tabIA" aria-selected="false">IA</a>
-              <a class="nav-link category-pill" id="pill-perso" data-toggle="pill" href="#tabPerso" role="tab" aria-controls="tabPerso" aria-selected="false">Personnalisation</a>
-              <a class="nav-link category-pill" id="pill-utils" data-toggle="pill" href="#tabUtils" role="tab" aria-controls="tabUtils" aria-selected="false">Utilitaires</a>
-            </div>
-          </div>
-
-          <!-- Contenu catégories -->
-          <div class="tab-content" id="categoryContent">
-            <!-- Invites -->
-            <div class="tab-pane fade show active" id="tabInvites" role="tabpanel" aria-labelledby="pill-invites">
-              <div id="listInvites" class="row"></div>
-            </div>
-            <!-- Économie -->
-            <div class="tab-pane fade" id="tabEconomie" role="tabpanel" aria-labelledby="pill-economie">
-              <div id="listEconomie" class="row"></div>
-            </div>
-            <!-- IA -->
-            <div class="tab-pane fade" id="tabIA" role="tabpanel" aria-labelledby="pill-ia">
-              <div id="listIA" class="row"></div>
-            </div>
-            <!-- Personnalisation -->
-            <div class="tab-pane fade" id="tabPerso" role="tabpanel" aria-labelledby="pill-perso">
-              <div id="listPerso" class="row"></div>
-            </div>
-            <!-- Utilitaires -->
-            <div class="tab-pane fade" id="tabUtils" role="tabpanel" aria-labelledby="pill-utils">
-              <div id="listUtils" class="row"></div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <small class="text-muted">Les commandes listées peuvent varier selon les permissions et la configuration du serveur.</small>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Hero -->
   <header class="heading">
@@ -152,7 +91,7 @@
     </div>
   </header>
 
-  <!-- (Tu peux garder la section "features" existante si tu veux) -->
+  <!-- Features (tu peux garder cette section si tu veux un aperçu rapide) -->
   <section id="features" class="features container pb-4">
     <div class="title">Fonctionnalités principales</div>
     <div class="subtitle">Un ensemble d’outils pensés pour la croissance et l’animation de ton serveur.</div>
@@ -248,80 +187,6 @@
     }
     loadStats();
     setInterval(loadStats, 300000);
-  </script>
-
-  <!-- Script data pour le modal Infos -->
-  <script>
-    // Définition des commandes par catégorie (exemples basés sur ce que tu as dans tes logs)
-    const COMMANDS = {
-      invites: [
-        { name: "/invite-auto-role", desc: "Attribue automatiquement un rôle aux nouveaux membres via le système d’invitation." },
-        { name: "/invite-channel", desc: "Définit le salon où les messages d’invitation seront envoyés." },
-        { name: "/invite-embed", desc: "Active un message d’accueil stylé (embed) pour les nouveaux arrivants." },
-        { name: "/invite-embed-config", desc: "Personnalise le texte, les couleurs et l’apparence de l’embed d’invitation." },
-        { name: "/invite-message", desc: "Configure le message d’invitation (texte personnalisé)." },
-        { name: "/invite-reset", desc: "Réinitialise les statistiques d’invites pour un membre." },
-        { name: "/invite-test", desc: "Envoie un message de test pour vérifier la configuration d’invites." },
-        { name: "/invite-variables", desc: "Liste les variables disponibles (membre, serveur, compteur…) pour tes messages." }
-      ],
-      economie: [
-        { name: "/balance", desc: "Affiche le solde d’un utilisateur (monnaie virtuelle du serveur)." },
-        { name: "/daily", desc: "Récupère une récompense quotidienne." },
-        { name: "/work", desc: "Gagne des pièces en travaillant (cooldown configurable)." },
-        { name: "/leaderboard", desc: "Classement des plus riches/utilisateurs les plus actifs." },
-        { name: "/setcooldown", desc: "Règle les temps de recharge des actions d’économie." },
-        { name: "/cooldowns", desc: "Affiche tes temps de recharge restants." }
-      ],
-      ia: [
-        { name: "/ai-channel", desc: "Définit le salon où l’IA discute (messages dédiés)." },
-        { name: "/ai-voice", desc: "Configure un salon vocal IA (si disponible)." },
-        { name: "/ia-personality", desc: "Choisis la personnalité/tonalité que l’IA doit adopter." },
-        { name: "/ai-thoughts", desc: "Active/affiche les pensées IA (si prévu dans ton bot)." }
-      ],
-      perso: [
-        { name: "/responses", desc: "Gère des réponses automatiques personnalisées selon des mots-clés." },
-        { name: "/addreponse", desc: "Ajoute une réponse automatique." },
-        { name: "/reminders", desc: "Gestion des rappels (liste, suppression…)." },
-        { name: "/remindme", desc: "Crée un rappel unique pour toi (date/heure)." },
-        { name: "/poll", desc: "Crée un sondage simple dans un salon." }
-      ],
-      utils: [
-        { name: "/botstats", desc: "Affiche les statistiques du bot." },
-        { name: "/ping", desc: "Vérifie la latence du bot." },
-        { name: "/serverinfo", desc: "Infos générales sur le serveur." },
-        { name: "/userinfo", desc: "Infos sur un utilisateur." },
-        { name: "/myrank", desc: "Affiche ton rang/points (si système de rang actif)." }
-      ]
-    };
-
-    // Fonction utilitaire pour créer une carte de commande
-    function cmdCard(cmd){
-      return `
-        <div class="col-md-6 mb-3">
-          <div class="cmd-card h-100">
-            <div class="d-flex align-items-start justify-content-between">
-              <div>
-                <span class="badge badge-light cmd-badge">${cmd.name}</span>
-                <p class="mb-0 mt-2">${cmd.desc}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    // Rendu des listes au premier affichage du modal
-    $('#infosModal').on('shown.bs.modal', function () {
-      // Remplit chaque onglet une seule fois
-      if (!this._filled) {
-        document.getElementById('listInvites').innerHTML  = COMMANDS.invites.map(cmdCard).join('');
-        document.getElementById('listEconomie').innerHTML = COMMANDS.economie.map(cmdCard).join('');
-        document.getElementById('listIA').innerHTML       = COMMANDS.ia.map(cmdCard).join('');
-        document.getElementById('listPerso').innerHTML    = COMMANDS.perso.map(cmdCard).join('');
-        document.getElementById('listUtils').innerHTML    = COMMANDS.utils.map(cmdCard).join('');
-        this._filled = true;
-      }
-    });
   </script>
 </body>
 </html>

@@ -16,7 +16,7 @@
       --panel2:#242840;
       --text:#e8ecff;
       --muted:#a3a8c2;
-      --primary:#7c5cff; /* violet/bleu flashy */
+      --primary:#7c5cff;
       --primary-soft:#7c5cff22;
       --border:#2b3150;
     }
@@ -60,7 +60,7 @@
   <div class="wrap">
     <header class="mb-3">
       <h1>Infos & commandes</h1>
-      <p class="lead">Parcourez les catégories et découvrez les commandes disponibles sur RayBot, avec des explications simples.</p>
+      <p class="lead">Choisis une catégorie pour voir les commandes disponibles de RayBot, avec une courte explication.</p>
       <div>
         <span class="chip">Dernière mise à jour : <span id="d"></span></span>
         <span class="chip">Langue : FR</span>
@@ -69,60 +69,45 @@
 
     <div class="tabs">
       <ul class="nav nav-tabs" id="tabs" role="tablist">
-        <li class="nav-item"><a class="nav-link active" id="tab-eco" data-toggle="tab" href="#pane-eco" role="tab">💰 Économie</a></li>
-        <li class="nav-item"><a class="nav-link" id="tab-inv" data-toggle="tab" href="#pane-inv" role="tab">🧲 Invites</a></li>
+        <li class="nav-item"><a class="nav-link active" id="tab-inv" data-toggle="tab" href="#pane-inv" role="tab">🧲 Invites</a></li>
+        <li class="nav-item"><a class="nav-link" id="tab-eco" data-toggle="tab" href="#pane-eco" role="tab">💰 Économie</a></li>
+        <li class="nav-item"><a class="nav-link" id="tab-int" data-toggle="tab" href="#pane-int" role="tab">🗳️ Interactions</a></li>
         <li class="nav-item"><a class="nav-link" id="tab-ia"  data-toggle="tab" href="#pane-ia"  role="tab">🤖 IA</a></li>
-        <li class="nav-item"><a class="nav-link" id="tab-perso" data-toggle="tab" href="#pane-perso" role="tab">🎨 Personnalisation</a></li>
-        <li class="nav-item"><a class="nav-link" id="tab-utils" data-toggle="tab" href="#pane-utils" role="tab">🧰 Utilitaires</a></li>
       </ul>
 
       <div class="tab-content mt-3" id="content">
-        <!-- ECO -->
-        <div class="tab-pane fade show active" id="pane-eco" role="tabpanel">
-          <div class="cmd"><div class="name">/balance</div><p class="desc">Affiche ton solde ou celui d’un membre.</p></div>
-          <div class="cmd"><div class="name">/daily</div><p class="desc">Récompense quotidienne. Bonus cumulables selon la configuration.</p></div>
-          <div class="cmd"><div class="name">/work</div><p class="desc">Travaille pour gagner des pièces. Soumis au cooldown.</p></div>
-          <div class="cmd"><div class="name">/leaderboard</div><p class="desc">Classement des plus riches / plus actifs.</p></div>
-          <div class="cmd"><div class="name">/setcooldown</div><p class="desc">Modifie les temps de recharge (admin).</p></div>
-          <div class="cmd"><div class="name">/cooldowns</div><p class="desc">Affiche tes temps de recharge restants.</p></div>
+        <!-- INVITES -->
+        <div class="tab-pane fade show active" id="pane-inv" role="tabpanel">
+          <div class="cmd"><div class="name">/invite-message</div><p class="desc">Configure le message d’accueil/invitation envoyé aux nouveaux membres.</p></div>
+          <div class="cmd"><div class="name">/invite-reset</div><p class="desc">Réinitialise les statistiques d’invites d’un membre.</p></div>
+          <div class="cmd"><div class="name">/invite-setup</div><p class="desc">Assistant de configuration des invites (salon, embed, auto-role, etc.).</p></div>
+          <div class="cmd"><div class="name">/invite-test</div><p class="desc">Envoie un message de test pour vérifier la configuration actuelle.</p></div>
+          <div class="cmd"><div class="name">/invite-variables</div><p class="desc">Liste les variables utilisables dans tes messages (ex. {member}, {server}, {invites}).</p></div>
         </div>
 
-        <!-- INVITES -->
-        <div class="tab-pane fade" id="pane-inv" role="tabpanel">
-          <div class="cmd"><div class="name">/invite-channel</div><p class="desc">Définit le salon où envoyer les messages d’invitation.</p></div>
-          <div class="cmd"><div class="name">/invite-embed</div><p class="desc">Active un message d’accueil en embed pour les nouveaux.</p></div>
-          <div class="cmd"><div class="name">/invite-embed-config</div><p class="desc">Personnalise le contenu, la couleur et le style de l’embed.</p></div>
-          <div class="cmd"><div class="name">/invite-message</div><p class="desc">Définit un message d’invitation personnalisé (texte).</p></div>
-          <div class="cmd"><div class="name">/invite-auto-role</div><p class="desc">Donne automatiquement un rôle aux nouveaux via les invites.</p></div>
-          <div class="cmd"><div class="name">/invite-reset</div><p class="desc">Réinitialise les stats d’invites d’un membre.</p></div>
-          <div class="cmd"><div class="name">/invite-test</div><p class="desc">Envoie un test pour valider la configuration.</p></div>
-          <div class="cmd"><div class="name">/invite-variables</div><p class="desc">Liste des variables utilisables (ex: {member}, {server}, {invites}).</p></div>
+        <!-- ECONOMIE -->
+        <div class="tab-pane fade" id="pane-eco" role="tabpanel">
+          <div class="cmd"><div class="name">/addreponse</div><p class="desc">Ajoute une réponse automatique liée au système d’économie (si prévu).</p></div>
+          <div class="cmd"><div class="name">/balance</div><p class="desc">Affiche ton solde ou celui d’un membre.</p></div>
+          <div class="cmd"><div class="name">/cooldowns</div><p class="desc">Montre tes temps de recharge restants pour les actions d’économie.</p></div>
+          <div class="cmd"><div class="name">/daily</div><p class="desc">Récupère la récompense quotidienne.</p></div>
+          <div class="cmd"><div class="name">/responses</div><p class="desc">Gère des réponses automatiques (mots-clés) liées à l’économie ou générales.</p></div>
+          <div class="cmd"><div class="name">/setcooldown</div><p class="desc">Définit les temps de recharge (admin).</p></div>
+          <div class="cmd"><div class="name">/work</div><p class="desc">Travaille pour gagner des pièces. Soumis à un cooldown.</p></div>
+        </div>
+
+        <!-- INTERACTIONS -->
+        <div class="tab-pane fade" id="pane-int" role="tabpanel">
+          <div class="cmd"><div class="name">/poll</div><p class="desc">Crée un sondage simple dans un salon.</p></div>
+          <div class="cmd"><div class="name">/reminders</div><p class="desc">Gère tes rappels (liste/suppression).</p></div>
+          <div class="cmd"><div class="name">/remindme</div><p class="desc">Crée un rappel unique pour une date/heure précises.</p></div>
         </div>
 
         <!-- IA -->
         <div class="tab-pane fade" id="pane-ia" role="tabpanel">
-          <div class="cmd"><div class="name">/ai-channel</div><p class="desc">Définit le salon où l’IA répondra.</p></div>
-          <div class="cmd"><div class="name">/ai-voice</div><p class="desc">Active l’IA vocale (si disponible).</p></div>
-          <div class="cmd"><div class="name">/ia-personality</div><p class="desc">Choisis la personnalité / ton de l’IA.</p></div>
-          <div class="cmd"><div class="name">/ai-thoughts</div><p class="desc">Gère l’affichage des pensées IA (optionnel).</p></div>
-        </div>
-
-        <!-- PERSONNALISATION -->
-        <div class="tab-pane fade" id="pane-perso" role="tabpanel">
-          <div class="cmd"><div class="name">/responses</div><p class="desc">Gère des réponses automatiques par mots-clés.</p></div>
-          <div class="cmd"><div class="name">/addreponse</div><p class="desc">Ajoute une réponse auto au déclencheur souhaité.</p></div>
-          <div class="cmd"><div class="name">/reminders</div><p class="desc">Liste et gère tes rappels.</p></div>
-          <div class="cmd"><div class="name">/remindme</div><p class="desc">Crée un rappel simple avec date/heure.</p></div>
-          <div class="cmd"><div class="name">/poll</div><p class="desc">Crée un petit sondage dans un salon.</p></div>
-        </div>
-
-        <!-- UTILS -->
-        <div class="tab-pane fade" id="pane-utils" role="tabpanel">
-          <div class="cmd"><div class="name">/botstats</div><p class="desc">Stats du bot.</p></div>
-          <div class="cmd"><div class="name">/ping</div><p class="desc">Latence du bot.</p></div>
-          <div class="cmd"><div class="name">/serverinfo</div><p class="desc">Infos globales sur le serveur.</p></div>
-          <div class="cmd"><div class="name">/userinfo</div><p class="desc">Informations sur un utilisateur.</p></div>
-          <div class="cmd"><div class="name">/myrank</div><p class="desc">Affiche ton rang/points si le système est activé.</p></div>
+          <div class="cmd"><div class="name">/ai-channel</div><p class="desc">Définit le salon où l’IA répondra aux messages.</p></div>
+          <div class="cmd"><div class="name">/ai-voice</div><p class="desc">Active ou configure l’IA vocale dans un salon vocal.</p></div>
+          <div class="cmd"><div class="name">/ia-personality</div><p class="desc">Choisis la personnalité/ton que l’IA doit adopter.</p></div>
         </div>
       </div>
     </div>

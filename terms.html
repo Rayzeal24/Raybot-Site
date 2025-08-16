@@ -5,332 +5,161 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Conditions d’utilisation — RayBot</title>
 
-  <!-- Canonical & SEO -->
-  <link rel="canonical" href="https://raybot.example.com/terms.html" />
-  <meta name="description" content="Conditions d’utilisation de RayBot : règles d’accès, utilisation autorisée, responsabilité et contact." />
-  <meta name="theme-color" content="#4f46e5" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
-
-  <!-- Open Graph / Twitter -->
+  <meta name="description" content="Conditions d’utilisation de RayBot : règles d'accès, utilisation autorisée, responsabilité et contact." />
   <meta property="og:title" content="Conditions d’utilisation — RayBot" />
-  <meta property="og:description" content="Lisez les conditions d’utilisation de RayBot avant de l’ajouter à votre serveur." />
+  <meta property="og:description" content="Lisez les conditions d’utilisation de RayBot avant de l’utiliser sur votre serveur Discord." />
   <meta property="og:type" content="website" />
-  <meta property="og:locale" content="fr_FR" />
-  <meta property="og:image" content="https://cdn.discordapp.com/avatars/1401275433164472421/fc4bb079b3a4e560281ad9c8d6275345.png?size=256" />
-  <meta property="og:url" content="https://raybot.example.com/terms.html" />
-  <meta name="twitter:card" content="summary" />
-
-  <!-- Favicon -->
   <link rel="icon" href="https://cdn.discordapp.com/avatars/1401275433164472421/fc4bb079b3a4e560281ad9c8d6275345.png?size=128" />
 
-  <!-- Styles -->
   <link rel="stylesheet" href="bootstrap.min.css" />
   <link rel="stylesheet" href="main.css" />
 
   <style>
-    /* ===== Design tokens ===== */
-    :root{
-      --txt:#1f2937; --muted:#6b7280; --card:#ffffff; --border:#e5e7eb; --accent:#4f46e5; --bg:#f8fafc;
-      --accent-weak: rgba(79,70,229,.1);
-      --radius: 14px;
-      --shadow: 0 6px 24px rgba(0,0,0,.06);
-      --focus: 0 0 0 3px rgba(79,70,229,.35);
+    :root {
+      --txt: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --accent: #4f46e5;
+      --bg: #f8fafc;
     }
     @media (prefers-color-scheme: dark){
       :root{
         --txt:#e5e7eb; --muted:#9ca3af; --card:#0b1220; --border:#1f2a44; --accent:#818cf8; --bg:#060b18;
-        --accent-weak: rgba(129,140,248,.12);
-        --shadow: 0 10px 28px rgba(0,0,0,.35);
       }
     }
-
-    /* ===== Base ===== */
-    html:focus-within{ scroll-behavior: smooth; }
-    body{
-      background:var(--bg); color:var(--txt);
-      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    }
-    a{ color:var(--accent); text-decoration: none; }
-    a:hover{ text-decoration: underline; }
-    .container-narrow{ max-width: 1080px; }
-    .page{ padding: 32px 20px 72px; }
-
-    /* ===== Layout with sticky TOC ===== */
-    .grid{
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 24px;
-    }
-    @media (max-width: 992px){
-      .grid{ grid-template-columns: 1fr; }
-      .toc-card{ position: static; top: auto; }
-    }
-
-    /* ===== Cards / typographie ===== */
-    .card{
-      background:var(--card); border:1px solid var(--border);
-      border-radius: var(--radius); box-shadow: var(--shadow);
-    }
+    body{ background:var(--bg); color:var(--txt); font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; }
+    .container-narrow{ max-width: 920px; }
+    .page{ padding: 32px 20px 48px; }
+    .card{ background:var(--card); border:1px solid var(--border); border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,.04); }
     .card .card-body{ padding: 24px; }
-    h1{ font-weight:800; letter-spacing:-.02em; font-size: clamp(1.8rem, 2vw + 1.2rem, 2.4rem); }
-    h2{ font-weight:800; font-size: 1.2rem; margin: 0 0 12px; }
-    p, li{ line-height: 1.75; }
+    h1{ font-weight:800; letter-spacing:-.02em; }
+    h2{ font-weight:800; font-size:1.25rem; margin-top:1.75rem; }
+    p, li{ line-height: 1.7; }
     .muted{ color: var(--muted); }
-    .badge-soft{
-      background: var(--accent-weak); color: var(--accent);
-      border-radius: 999px; padding: .35rem .7rem; font-size: .75rem; font-weight:700;
-    }
+    .toc a{ text-decoration:none; }
+    .badge-soft{ background: rgba(79,70,229,.1); color:#4f46e5; border-radius:999px; padding:.25rem .6rem; font-size:.75rem; font-weight:700; }
     .top-links{ display:flex; gap:10px; flex-wrap:wrap; }
-    .btn-soft{
-      border:1px solid var(--border); background:transparent; color:var(--txt);
-      padding:.45rem .7rem; border-radius:10px; text-decoration:none; font-weight:600;
-    }
-    .btn-soft:hover{ background: var(--accent-weak); text-decoration:none; }
-    .btn-primary-soft{ background: var(--accent-weak); color: var(--accent); border: none; }
-    .btn-primary-soft:hover{ filter: brightness(1.05); }
-    .hr{ height:1px; background:var(--border); margin: 18px 0; border:0; }
-
-    /* ===== TOC ===== */
-    .toc-card{ position: sticky; top: 18px; align-self: start; }
-    .toc{ margin: 0; padding-left: 1rem; }
-    .toc a{ display:block; padding:.25rem 0; border-radius:8px; }
-    .toc a:focus-visible{ outline: none; box-shadow: var(--focus); }
-    .toc .sub{ padding-left: 1rem; }
-
-    /* ===== Section header with anchor button ===== */
-    .section-title{
-      display:flex; align-items:center; gap:10px;
-      scroll-margin-top: 90px;
-    }
-    .anchor-btn{
-      border:none; background:transparent; color:var(--muted);
-      padding:.2rem; border-radius:8px; opacity:.8; cursor:pointer;
-    }
-    .anchor-btn:hover{ color:var(--accent); opacity:1; }
-    .anchor-btn:focus-visible{ outline:none; box-shadow: var(--focus); }
-
-    /* ===== Footer / back to top ===== */
+    .top-links a{ text-decoration: none; }
     .footer-links{ margin-top: 12px; font-size:.95rem; }
-    .backtop{
-      position:fixed; right:16px; bottom:16px; border-radius:999px; padding:.6rem .9rem;
-      border:none; background:var(--accent); color:white; font-weight:700;
-      box-shadow: var(--shadow); z-index: 50;
-    }
-    .backtop:focus-visible{ outline:none; box-shadow: var(--focus); }
-
-    /* ===== Print ===== */
-    @media print{
-      .page{ padding: 0; }
-      .backtop, .top-links, .toc-card{ display:none !important; }
-      a[href]:after{ content:" (" attr(href) ")"; font-size:.9em; color: var(--muted); }
-    }
+    .backtop{ position:fixed; right:16px; bottom:16px; border-radius:999px; padding:.6rem .9rem; }
   </style>
-
-  <!-- JSON-LD (microdonnées ToS) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Conditions d’utilisation — RayBot",
-    "description":"Conditions d’utilisation de RayBot",
-    "url":"https://raybot.example.com/terms.html",
-    "inLanguage":"fr-FR",
-    "publisher":{
-      "@type":"Organization",
-      "name":"RayBot",
-      "url":"https://raybot.example.com"
-    }
-  }
-  </script>
 </head>
 <body>
   <main class="page">
     <div class="container container-narrow">
 
       <!-- Header -->
-      <header class="mb-4" id="top">
+      <header class="mb-4">
         <div class="d-flex align-items-center gap-3 mb-2">
-          <img src="https://cdn.discordapp.com/avatars/1401275433164472421/fc4bb079b3a4e560281ad9c8d6275345.png?size=128" width="42" height="42" style="border-radius:10px" alt="Logo RayBot">
+          <img src="https://cdn.discordapp.com/avatars/1401275433164472421/fc4bb079b3a4e560281ad9c8d6275345.png?size=128" width="42" height="42" style="border-radius:10px" alt="RayBot">
           <span class="badge-soft">RayBot</span>
         </div>
         <h1 class="mb-2">Conditions d’utilisation</h1>
-        <p class="muted">Dernière mise à jour : <time id="lastUpdate" datetime=""></time></p>
+        <p class="muted">Dernière mise à jour : <span id="lastUpdate"></span></p>
         <div class="top-links">
-          <a class="btn-soft" href="index.html" aria-label="Retour à l’accueil">← Accueil</a>
-          <a class="btn btn-primary-soft" href="privacy.html">Politique de confidentialité</a>
+          <a class="btn btn-outline-secondary btn-sm" href="index.html">← Retour à l’accueil</a>
+          <a class="btn btn-outline-primary btn-sm" href="privacy.html">Voir la Politique de confidentialité</a>
         </div>
-        <div class="hr"></div>
       </header>
 
-      <!-- Layout: TOC + Content -->
-      <div class="grid">
-        <!-- TOC -->
-        <aside class="toc-card card">
-          <div class="card-body">
-            <h2 class="mb-3">Sommaire</h2>
-            <ol class="toc" aria-label="Sommaire des sections">
-              <li><a href="#accept">1. Acceptation</a></li>
-              <li><a href="#access">2. Accès et disponibilité</a></li>
-              <li><a href="#use">3. Utilisation autorisée</a></li>
-              <li><a href="#content">4. Contenu utilisateur</a></li>
-              <li><a href="#privacy">5. Données & confidentialité</a></li>
-              <li><a href="#liability">6. Responsabilité</a></li>
-              <li><a href="#changes">7. Modifications</a></li>
-              <li><a href="#termination">8. Résiliation</a></li>
-              <li><a href="#contact">9. Contact</a></li>
-            </ol>
-          </div>
-        </aside>
-
-        <!-- Content -->
-        <div class="content">
-          <!-- Sections -->
-          <section id="accept" class="card mb-4">
-            <div class="card-body">
-              <div class="section-title">
-                <h2 class="mb-0">1) Acceptation</h2>
-                <button class="anchor-btn" data-anchor="#accept" title="Copier le lien de cette section" aria-label="Copier le lien de la section Acceptation">#</button>
-              </div>
-              <p>En invitant ou en utilisant RayBot, vous acceptez ces Conditions d’utilisation. Si vous n’êtes pas d’accord, n’utilisez pas le Bot.</p>
-            </div>
-          </section>
-
-          <section id="access" class="card mb-4">
-            <div class="card-body">
-              <div class="section-title">
-                <h2 class="mb-0">2) Accès et disponibilité</h2>
-                <button class="anchor-btn" data-anchor="#access" title="Copier le lien de cette section" aria-label="Copier le lien de la section Accès et disponibilité">#</button>
-              </div>
-              <p>Le Bot est fourni « tel quel ». Nous pouvons modifier, suspendre ou interrompre certaines fonctionnalités à tout moment sans préavis.</p>
-            </div>
-          </section>
-
-          <section id="use" class="card mb-4">
-            <div class="card-body">
-              <div class="section-title">
-                <h2 class="mb-0">3) Utilisation autorisée</h2>
-                <button class="anchor-btn" data-anchor="#use" title="Copier le lien de cette section" aria-label="Copier le lien de la section Utilisation autorisée">#</button>
-              </div>
-              <ul>
-                <li>Respectez les <a href="https://discord.com/terms" target="_blank" rel="noopener">Conditions d’utilisation de Discord</a> et leurs politiques.</li>
-                <li>N’utilisez pas le Bot pour harceler, spammer, frauder ou enfreindre la loi.</li>
-                <li>Ne tentez pas de contourner les limitations, d’ingénierie inverse, de décompiler, d’extraire des clés ou de perturber le service.</li>
-              </ul>
-            </div>
-          </section>
-
-          <section id="content" class="card mb-4">
-            <div class="card-body">
-              <div class="section-title">
-                <h2 class="mb-0">4) Contenu utilisateur</h2>
-                <button class="anchor-btn" data-anchor="#content" title="Copier le lien de cette section" aria-label="Copier le lien de la section Contenu utilisateur">#</button>
-              </div>
-              <p>Le contenu envoyé via Discord reste la propriété de ses auteurs. Vous nous accordez une licence limitée, non exclusive et révocable pour traiter techniquement ce contenu afin de fournir les fonctionnalités du Bot.</p>
-            </div>
-          </section>
-
-          <section id="privacy" class="card mb-4">
-            <div class="card-body">
-              <div class="section-title">
-                <h2 class="mb-0">5) Données & confidentialité</h2>
-                <button class="anchor-btn" data-anchor="#privacy" title="Copier le lien de cette section" aria-label="Copier le lien de la section Données et confidentialité">#</button>
-              </div>
-              <p>Le traitement des données est décrit dans notre <a href="privacy.html">Politique de confidentialité</a>. Elle précise les données collectées, la base légale, la durée de conservation, vos droits et comment les exercer.</p>
-            </div>
-          </section>
-
-          <section id="liability" class="card mb-4">
-            <div class="card-body">
-              <div class="section-title">
-                <h2 class="mb-0">6) Responsabilité</h2>
-                <button class="anchor-btn" data-anchor="#liability" title="Copier le lien de cette section" aria-label="Copier le lien de la section Responsabilité">#</button>
-              </div>
-              <p>Dans la limite autorisée par la loi, nous déclinons toute responsabilité pour les pertes indirectes, le manque à gagner, la perte de données, l’interruption d’activité ou tout dommage résultant de l’utilisation du Bot. L’utilisation se fait à vos risques.</p>
-            </div>
-          </section>
-
-          <section id="changes" class="card mb-4">
-            <div class="card-body">
-              <div class="section-title">
-                <h2 class="mb-0">7) Modifications</h2>
-                <button class="anchor-btn" data-anchor="#changes" title="Copier le lien de cette section" aria-label="Copier le lien de la section Modifications">#</button>
-              </div>
-              <p>Nous pouvons mettre à jour ces Conditions à tout moment. La date de mise à jour figure en haut de la page. L’usage continu du Bot vaut acceptation des nouvelles conditions.</p>
-            </div>
-          </section>
-
-          <section id="termination" class="card mb-4">
-            <div class="card-body">
-              <div class="section-title">
-                <h2 class="mb-0">8) Résiliation</h2>
-                <button class="anchor-btn" data-anchor="#termination" title="Copier le lien de cette section" aria-label="Copier le lien de la section Résiliation">#</button>
-              </div>
-              <p>Nous pouvons retirer le Bot d’un serveur qui enfreint ces Conditions ou les politiques de Discord. Vous pouvez cesser d’utiliser le Bot à tout moment en le retirant de votre serveur.</p>
-            </div>
-          </section>
-
-          <section id="contact" class="card">
-            <div class="card-body">
-              <div class="section-title">
-                <h2 class="mb-0">9) Contact</h2>
-                <button class="anchor-btn" data-anchor="#contact" title="Copier le lien de cette section" aria-label="Copier le lien de la section Contact">#</button>
-              </div>
-              <p>Pour toute question, rendez-vous sur le <a href="https://discord.gg/DM2bEGXCMm" target="_blank" rel="noopener">Serveur support</a>.</p>
-              <div class="footer-links">
-                <a href="index.html">← Retour à l’accueil</a> ·
-                <a href="#top">Haut de page ↑</a>
-              </div>
-            </div>
-          </section>
+      <!-- Sommaire -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h2 class="mb-3">Sommaire</h2>
+          <ol class="toc">
+            <li><a href="#accept">Acceptation</a></li>
+            <li><a href="#access">Accès et disponibilité</a></li>
+            <li><a href="#use">Utilisation autorisée</a></li>
+            <li><a href="#content">Contenu utilisateur</a></li>
+            <li><a href="#privacy">Données et confidentialité</a></li>
+            <li><a href="#liability">Responsabilité</a></li>
+            <li><a href="#changes">Modifications</a></li>
+            <li><a href="#termination">Résiliation</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ol>
         </div>
       </div>
+
+      <!-- Sections -->
+      <section id="accept" class="card mb-4">
+        <div class="card-body">
+          <h2>1) Acceptation</h2>
+          <p>En ajoutant ou en utilisant RayBot sur un serveur, vous reconnaissez avoir lu et accepté ces Conditions d’utilisation. Si vous n’êtes pas d’accord, veuillez ne pas utiliser le Bot.</p>
+        </div>
+      </section>
+
+      <section id="access" class="card mb-4">
+        <div class="card-body">
+          <h2>2) Accès et disponibilité</h2>
+          <p>RayBot est fourni « tel quel » et « selon disponibilité ». Nous nous réservons le droit de modifier, suspendre ou supprimer certaines fonctionnalités à tout moment, sans préavis. Nous ne garantissons pas une disponibilité continue du service.</p>
+        </div>
+      </section>
+
+      <section id="use" class="card mb-4">
+        <div class="card-body">
+          <h2>3) Utilisation autorisée</h2>
+          <ul>
+            <li>Vous devez respecter les <a href="https://discord.com/terms" target="_blank" rel="noopener">Conditions d’utilisation de Discord</a> ainsi que leurs règles communautaires.</li>
+            <li>Vous vous engagez à ne pas utiliser le Bot pour du spam, du harcèlement, de la fraude, de la diffusion de contenu illégal ou toute autre activité nuisible.</li>
+            <li>Il est interdit de tenter de contourner les limitations, d’analyser ou de décompiler le code, ou de perturber le bon fonctionnement du service.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="content" class="card mb-4">
+        <div class="card-body">
+          <h2>4) Contenu utilisateur</h2>
+          <p>Le contenu que vous transmettez via Discord reste votre propriété. Toutefois, vous accordez à RayBot une autorisation limitée d’utiliser, traiter et stocker ce contenu uniquement dans le but de fournir les fonctionnalités proposées.</p>
+        </div>
+      </section>
+
+      <section id="privacy" class="card mb-4">
+        <div class="card-body">
+          <h2>5) Données et confidentialité</h2>
+          <p>Les informations relatives à la collecte, l’utilisation et la protection des données sont détaillées dans notre <a href="privacy.html">Politique de confidentialité</a>. Celle-ci décrit les données collectées, leur finalité, ainsi que vos droits d’accès et de suppression.</p>
+        </div>
+      </section>
+
+      <section id="liability" class="card mb-4">
+        <div class="card-body">
+          <h2>6) Responsabilité</h2>
+          <p>Nous ne pouvons être tenus responsables des dommages indirects, pertes de données, interruptions ou tout autre préjudice lié à l’utilisation du Bot. Vous utilisez RayBot à vos propres risques.</p>
+        </div>
+      </section>
+
+      <section id="changes" class="card mb-4">
+        <div class="card-body">
+          <h2>7) Modifications</h2>
+          <p>Ces Conditions peuvent être mises à jour à tout moment. La date de mise à jour indiquée en haut de cette page fait foi. L’utilisation continue du Bot après une modification vaut acceptation des nouvelles conditions.</p>
+        </div>
+      </section>
+
+      <section id="termination" class="card mb-4">
+        <div class="card-body">
+          <h2>8) Résiliation</h2>
+          <p>Nous nous réservons le droit de retirer RayBot de tout serveur qui ne respecte pas ces Conditions ou les règles de Discord. Vous pouvez cesser d’utiliser le Bot à tout moment en le retirant de votre serveur.</p>
+        </div>
+      </section>
+
+      <section id="contact" class="card">
+        <div class="card-body">
+          <h2>9) Contact</h2>
+          <p>Pour toute question ou réclamation concernant RayBot, merci de rejoindre le <a href="https://discord.gg/DM2bEGXCMm" target="_blank" rel="noopener">Serveur support</a>.</p>
+          <div class="footer-links">
+            <a href="index.html">← Retour à l’accueil</a> ·
+            <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Haut de page ↑</a>
+          </div>
+        </div>
+      </section>
 
     </div>
   </main>
 
-  <button class="backtop" title="Haut" aria-label="Remonter en haut">↑</button>
+  <button class="btn btn-primary backtop" title="Haut" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
   <script>
-    // Last update
-    const el = document.getElementById('lastUpdate');
-    const now = new Date();
-    el.textContent = now.toLocaleDateString('fr-FR');
-    el.setAttribute('datetime', now.toISOString().split('T')[0]);
-
-    // Back to top
-    document.querySelector('.backtop').addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Copy anchor link buttons
-    function copyToClipboard(text){
-      navigator.clipboard.writeText(text).then(()=>{
-        // tiny feedback
-        const prev = document.title;
-        document.title = 'Lien copié ✅';
-        setTimeout(() => document.title = prev, 900);
-      }).catch(()=>{});
-    }
-    document.querySelectorAll('.anchor-btn').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const anchor = btn.getAttribute('data-anchor');
-        const url = new URL(window.location);
-        url.hash = anchor.slice(1);
-        copyToClipboard(url.toString());
-        // also move to section
-        location.hash = anchor;
-      });
-    });
-
-    // Improve focus-visible only for keyboard
-    function handleFirstTab(e){
-      if (e.key === 'Tab'){
-        document.body.classList.add('user-is-tabbing');
-        window.removeEventListener('keydown', handleFirstTab);
-      }
-    }
-    window.addEventListener('keydown', handleFirstTab, false);
+    document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString('fr-FR');
   </script>
 </body>
 </html>

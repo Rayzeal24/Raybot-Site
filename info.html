@@ -82,6 +82,7 @@
         <li class="nav-item"><a class="nav-link" id="tab-eco" data-toggle="tab" href="#pane-eco" role="tab">💰 Économie</a></li>
         <li class="nav-item"><a class="nav-link" id="tab-int" data-toggle="tab" href="#pane-int" role="tab">🗳️ Interactions</a></li>
         <li class="nav-item"><a class="nav-link" id="tab-ia"  data-toggle="tab" href="#pane-ia"  role="tab">🤖 IA</a></li>
+        <li class="nav-item"><a class="nav-link" id="tab-utils" data-toggle="tab" href="#pane-utils" role="tab">🧰 Utilitaires</a></li>
       </ul>
 
       <div class="tab-content mt-3" id="content">
@@ -89,8 +90,14 @@
         <div class="tab-pane fade" id="pane-eco" role="tabpanel"><div class="grid" id="grid-eco"></div></div>
         <div class="tab-pane fade" id="pane-int" role="tabpanel"><div class="grid" id="grid-int"></div></div>
         <div class="tab-pane fade" id="pane-ia"  role="tabpanel"><div class="grid" id="grid-ia"></div></div>
+        <div class="tab-pane fade" id="pane-utils" role="tabpanel"><div class="grid" id="grid-utils"></div></div>
       </div>
-    </div><!-- ← fermeture manquante de .tabs -->
+    </div><!-- fermeture .tabs -->
+
+    <p class="note mt-3">
+      📸 Pour afficher une image : place un fichier <code>.png</code> ou <code>.jpg</code> dans <code>/assets/cmds/</code> avec le <strong>même nom</strong> que la commande (ex. <code>invite-setup.png</code>, <code>myrank.png</code>).  
+      ➜ Un placeholder s’affiche si l’image manque.
+    </p>
 
     <div class="footer">Besoin d’aide ? Rejoins le <a href="https://discord.gg/DM2bEGXCMm" target="_blank">serveur support</a>.</div>
   </div>
@@ -98,80 +105,108 @@
   <script>
     document.getElementById('d').textContent = new Date().toLocaleDateString('fr-FR');
 
-    // Image par défaut si un visuel n'est pas fourni
+    // Image par défaut si aucun visuel
     const PLACEHOLDER = "assets/cmds/_placeholder.png";
 
-    // --------- Données : EXACTEMENT tes commandes ----------
+    // === Données des commandes ===
     const COMMANDS = {
       invites: [
-        { name: "/invite-setup",      key: "invite-setup",
-          desc: "Assistant complet pour configurer les invitations : choix du salon de bienvenue, style du message (embed ou texte), rôle automatique à l’arrivée, variables dynamiques, et message de test. Idéal pour démarrer rapidement sans oublier un réglage.",
-          extra: "Utilisation typique : lance /invite-setup et suis les étapes. Rejoue-le à tout moment pour ajuster." },
-        { name: "/invite-message",    key: "invite-message",
+        { name: "/invite-setup",     key: "invite-setup",
+          desc: "Assistant complet pour configurer les invitations : choix du salon de bienvenue, style du message (embed ou texte), rôle automatique à l’arrivée, variables dynamiques, et message de test.",
+          extra: "Lance /invite-setup et suis les étapes. Rejoue-le quand tu modifies ta config." },
+        { name: "/invite-message",   key: "invite-message",
           desc: "Définit le message d’accueil envoyé quand un membre rejoint via une invite. Supporte les variables (ex. {member}, {server}, {inviter}, {invites}) pour un texte dynamique.",
           extra: "Combine {member} + {inviter} pour remercier l’auteur de l’invite." },
-        { name: "/invite-variables",  key: "invite-variables",
-          desc: "Affiche la liste des variables disponibles pour composer tes messages d’invitation/accueil.",
+        { name: "/invite-variables", key: "invite-variables",
+          desc: "Liste des variables disponibles pour composer tes messages d’invitation/accueil.",
           extra: "Exemples : {member}, {server}, {inviter}, {invites}, {createdAt}…" },
-        { name: "/invite-test",       key: "invite-test",
+        { name: "/invite-test",      key: "invite-test",
           desc: "Envoie un message de test dans le salon configuré afin de visualiser l’embed, les couleurs et les variables.",
           extra: "Utilise-le après chaque modification importante." },
-        { name: "/invite-reset",      key: "invite-reset",
+        { name: "/invite-reset",     key: "invite-reset",
           desc: "Réinitialise les statistiques d’invitation d’un membre (correction, abus, etc.).",
           extra: "Pense à communiquer avant la remise à zéro." },
       ],
+
       economie: [
         { name: "/balance",     key: "balance",
-          desc: "Affiche le solde d’un utilisateur (le tien par défaut). Permet de suivre ta monnaie virtuelle.",
-          extra: "Mentionne un membre pour voir son solde." },
+          desc: "Affiche le solde d’un utilisateur (le tien par défaut). Permet de suivre ta monnaie virtuelle et tes progrès.",
+          extra: "Mentionne un utilisateur pour consulter son solde." },
         { name: "/daily",       key: "daily",
-          desc: "Récompense quotidienne. Encourage la régularité des membres.",
-          extra: "Raté un jour ? Reprends le lendemain !" },
+          desc: "Réclame ta récompense quotidienne et fais grimper ton portefeuille sans effort.",
+          extra: "Si tu rates un jour, tu repars le lendemain sans pénalité." },
         { name: "/work",        key: "work",
-          desc: "Travaille pour gagner des pièces. Soumis à un cooldown pour éviter le spam.",
-          extra: "Annonce les délais dans un canal d’infos." },
+          desc: "Effectue un travail fictif pour gagner des pièces. Soumis à un cooldown pour éviter le spam.",
+          extra: "Annonce les délais dans un salon d’infos pour éviter la confusion." },
         { name: "/cooldowns",   key: "cooldowns",
           desc: "Affiche tes temps de recharge restants (daily, work, etc.).",
-          extra: "Plus besoin de retenir les délais." },
+          extra: "Pratique pour planifier tes actions." },
         { name: "/setcooldown", key: "setcooldown",
-          desc: "Ajuste les délais des commandes économiques (staff).",
-          extra: "Garde un rythme fun et équilibré." },
+          desc: "Ajuste les délais des commandes économiques (réservé au staff).",
+          extra: "Garde un rythme fun et équilibré pour les joueurs." },
         { name: "/responses",   key: "responses",
-          desc: "Gère des réponses automatiques par mots-clés pour animer le chat.",
-          extra: "Peut s’utiliser avec l’économie pour des bonus." },
+          desc: "Gère des réponses automatiques par mots-clés pour animer le chat (réactions, messages, bonus).",
+          extra: "Peut s’associer à l’économie pour des mini-événements." },
         { name: "/addreponse",  key: "addreponse",
-          desc: "Ajoute une nouvelle réponse automatique (mot-clé + message).",
-          extra: "Reste simple pour éviter le spam." },
+          desc: "Ajoute une nouvelle réponse automatique (mot-clé → message).",
+          extra: "Reste simple pour éviter un flood involontaire." },
       ],
+
       interactions: [
         { name: "/poll",       key: "poll",
-          desc: "Crée un sondage (question + options) pour consulter rapidement ta communauté.",
-          extra: "Limite les options pour plus de clarté." },
+          desc: "Crée un sondage rapide (question + options) pour consulter ta communauté.",
+          extra: "Limite le nombre d’options pour plus de lisibilité." },
         { name: "/remindme",   key: "remindme",
-          desc: "Programme un rappel personnel à une date/heure donnée.",
-          extra: "Idéal pour réunions, tirages, événements." },
+          desc: "Programme un rappel personnel à une date/heure précise (MP ou salon selon la mise en œuvre).",
+          extra: "Parfait pour réunions, tirages, sorties." },
         { name: "/reminders",  key: "reminders",
-          desc: "Liste et gère tes rappels actifs (voir/supprimer).",
-          extra: "Fais un tri régulier." },
+          desc: "Liste et gère tes rappels en cours (voir / supprimer).",
+          extra: "Pense à nettoyer régulièrement." },
       ],
+
       ai: [
         { name: "/ai-channel",     key: "ai-channel",
-          desc: "Définit le salon dédié où l’IA répondra aux messages.",
-          extra: "Crée #ia-chat et restreins l’accès par rôles si besoin." },
+          desc: "Définit le salon dédié où l’IA répondra aux messages. Permet de canaliser les discussions IA.",
+          extra: "Crée #ia-chat et limite l’accès par rôles si besoin." },
         { name: "/ai-voice",       key: "ai-voice",
-          desc: "Active et configure l’IA vocale (si dispo) dans un salon vocal.",
+          desc: "Active et configure l’IA vocale (si disponible) dans un salon vocal.",
           extra: "Vérifie permissions audio et latence." },
         { name: "/ia-personality", key: "ia-personality",
-          desc: "Choisis la personnalité/ton de l’IA (sérieux, fun, roleplay…).",
-          extra: "Teste plusieurs profils pour trouver le bon." },
+          desc: "Choisis la personnalité/ton de l’IA (sérieuse, fun, roleplay, concise…).",
+          extra: "Teste plusieurs profils pour trouver celui qui colle à ta commu." },
+      ],
+
+      utilitaires: [
+        { name: "/botstats",     key: "botstats",
+          desc: "Affiche les **statistiques du bot** (latence, uptime, nombre de serveurs, mémoire…). Utile pour diagnostiquer la santé du service.",
+          extra: "Parfait après un déploiement pour vérifier que tout est stable." },
+        { name: "/ia-thoughts",  key: "ia-thoughts",
+          desc: "Active, désactive ou affiche les **pensées de l’IA** si la fonctionnalité est prévue (messages système/raisonnements visibles).",
+          extra: "À utiliser avec parcimonie pour éviter d’encombrer les salons." },
+        { name: "/leaderboard",  key: "leaderboard",
+          desc: "Affiche le **classement** (ex. richesse, points, activité selon ta logique). Encourage la compétition et la participation.",
+          extra: "Épingle le message dans un salon dédié pour un suivi facile." },
+        { name: "/myrank",       key: "myrank",
+          desc: "Montre **ton rang/points** et ta position dans le classement du serveur.",
+          extra: "Motivant pour progresser et grimper dans le top." },
+        { name: "/ping",         key: "ping",
+          desc: "Renvoie la **latence** du bot (websocket/API). Simple mais essentiel pour tester la réactivité.",
+          extra: "À utiliser si une commande semble lente." },
+        { name: "/serverinfo",   key: "serverinfo",
+          desc: "Informations détaillées sur le **serveur** (membres, rôles, salons, création, bannières…).",
+          extra: "Pratique pour un audit rapide." },
+        { name: "/userinfo",     key: "userinfo",
+          desc: "Affiche les **infos d’un utilisateur** (ID, dates, rôles…).",
+          extra: "Mentionne la personne ou utilise son ID si autorisé." },
       ],
     };
 
     const CATEGORIES = [
-      { id: "invites",  grid: "grid-inv" },
-      { id: "economie", grid: "grid-eco" },
-      { id: "interactions", grid: "grid-int" },
-      { id: "ai", grid: "grid-ia" },
+      { id: "invites",      grid: "grid-inv"   },
+      { id: "economie",     grid: "grid-eco"   },
+      { id: "interactions", grid: "grid-int"   },
+      { id: "ai",           grid: "grid-ia"    },
+      { id: "utilitaires",  grid: "grid-utils" },
     ];
 
     function cardHTML(cmd){
@@ -197,6 +232,7 @@
       });
     }
 
+    // Filtre de recherche global
     function attachSearch(){
       const input = document.getElementById('search');
       input.addEventListener('input', ()=>{
